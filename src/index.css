@@ -58,7 +58,6 @@
 @layer base {
   * {
     @apply border-border;
-    cursor: default;
   }
 
   html {
@@ -68,7 +67,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Open Sans', sans-serif;
-    cursor: default;
+    cursor: url('/cursors/cursor-white.png'), auto;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -76,7 +75,19 @@
   }
 
   a, button, [role="button"], input[type="submit"], input[type="button"] {
-    cursor: pointer;
+    cursor: url('/cursors/cursor-white.png'), pointer;
+  }
+
+  /* Dark cursor for light/white backgrounds */
+  .cursor-dark,
+  .cursor-dark * {
+    cursor: url('/cursors/cursor-black.png'), auto !important;
+  }
+
+  .cursor-dark a,
+  .cursor-dark button,
+  .cursor-dark [role="button"] {
+    cursor: url('/cursors/cursor-black.png'), pointer !important;
   }
 }
 
