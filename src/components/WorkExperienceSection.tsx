@@ -76,7 +76,7 @@ const WorkExperienceSection = () => {
               transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
               className="work-entry group border-b border-border/30"
             >
-              <div className="grid grid-cols-12 gap-4 py-6 px-4 -mx-4 transition-all duration-300 ease-out group-hover:bg-white">
+              <div className="grid grid-cols-12 gap-4 py-6 px-4 -mx-4 transition-all duration-300 ease-out group-hover:bg-white group-hover:cursor-dark">
                 {/* Left Column - Year Range */}
                 <div className="col-span-3 md:col-span-2">
                   <p className="font-code text-base md:text-lg transition-colors duration-300 group-hover:text-black">

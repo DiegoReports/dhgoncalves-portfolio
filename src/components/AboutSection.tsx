@@ -63,7 +63,7 @@ const AboutSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 + groupIndex * 0.1 }}
-                className="skill-card"
+                className="skill-card cursor-dark"
               >
                 <h3 className="font-code text-lg font-semibold mb-3">{group.title}</h3>
                 <p className="font-code text-sm text-skill-card-foreground/70">
