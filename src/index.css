@@ -58,6 +58,7 @@
 @layer base {
   * {
     @apply border-border;
+    cursor: default;
   }
 
   html {
@@ -67,10 +68,15 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Open Sans', sans-serif;
+    cursor: default;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Fira Code', monospace;
+  }
+
+  a, button, [role="button"], input[type="submit"], input[type="button"] {
+    cursor: pointer;
   }
 }
 
