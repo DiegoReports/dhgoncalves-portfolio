@@ -36,24 +36,24 @@ const Hero = () => {
   ];
 
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 pt-24 pb-12 relative overflow-hidden">
-      {/* Decorative circle */}
-      <div className="absolute top-20 left-1/4 w-[500px] h-[500px] rounded-full border border-white/5 -translate-x-1/2" />
-      <div className="absolute bottom-20 right-0 w-[300px] h-[300px] rounded-full border border-white/5 translate-x-1/2" />
+    <section className="min-h-screen flex flex-col justify-center px-4 md:px-12 lg:px-20 pt-20 md:pt-24 pb-8 md:pb-12 relative overflow-hidden">
+      {/* Decorative circle - hidden on mobile */}
+      <div className="absolute top-20 left-1/4 w-[500px] h-[500px] rounded-full border border-white/5 -translate-x-1/2 hidden md:block" />
+      <div className="absolute bottom-20 right-0 w-[300px] h-[300px] rounded-full border border-white/5 translate-x-1/2 hidden md:block" />
 
       <div className="max-w-7xl mx-auto w-full">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
           {/* Left side - Title */}
           <div className="flex-1">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-code text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none"
+              className="font-code text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none"
             >
-              <span className="block">{displayedText}</span>
+              <span className="block whitespace-nowrap">{displayedText}</span>
               <span
-                className={`inline-block w-[4px] h-[0.9em] bg-foreground ml-1 ${
+                className={`inline-block w-[3px] md:w-[4px] h-[0.9em] bg-foreground ml-1 ${
                   showCursor ? "opacity-100" : "opacity-0"
                 }`}
               />
@@ -63,7 +63,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-8 text-lg text-muted-foreground max-w-md font-body leading-relaxed"
+              className="mt-6 md:mt-8 text-base md:text-lg text-muted-foreground max-w-md font-body leading-relaxed"
             >
               My goal is to <span className="text-foreground font-semibold">automate processes</span>,{" "}
               write <span className="text-foreground font-semibold italic">clean and efficient code</span>{" "}
@@ -76,25 +76,26 @@ const Hero = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex items-center gap-4"
+            className="flex items-center gap-3 md:gap-4"
           >
             <a
               href="#projects"
-              className="px-8 py-4 bg-foreground text-background rounded-full font-code font-medium hover:bg-foreground/90 transition-colors"
+              className="px-6 md:px-8 py-3 md:py-4 bg-foreground text-background rounded-full font-code font-medium hover:bg-foreground/90 transition-colors text-sm md:text-base cursor-dark"
             >
               Projects
             </a>
             <a
               href="#projects"
-              className="w-14 h-14 rounded-full bg-foreground text-background flex items-center justify-center hover:bg-foreground/90 transition-colors"
+              className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-foreground text-background flex items-center justify-center hover:bg-foreground/90 transition-colors cursor-dark"
             >
               <svg
-                width="20"
-                height="20"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
+                className="md:w-5 md:h-5"
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
@@ -107,10 +108,10 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 flex flex-wrap gap-4"
+          className="mt-10 md:mt-16 grid grid-cols-2 sm:flex sm:flex-wrap gap-3 md:gap-4"
         >
           {socialLinks.map((social) => (
-            <a key={social.label} href={social.href} className="social-button">
+            <a key={social.label} href={social.href} className="social-button justify-center sm:justify-start">
               <social.icon size={18} />
               <span>{social.label}</span>
             </a>
