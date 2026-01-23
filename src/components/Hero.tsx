@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Send } from "lucide-react";
+import AutomationGrid from "./AutomationGrid";
 
 const Hero = () => {
   const [displayedText, setDisplayedText] = useState("");
@@ -37,11 +38,14 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex flex-col justify-center px-4 md:px-12 lg:px-20 pt-20 md:pt-24 pb-8 md:pb-12 relative overflow-hidden">
-      {/* Decorative circle - hidden on mobile */}
-      <div className="absolute top-20 left-1/4 w-[500px] h-[500px] rounded-full border border-white/5 -translate-x-1/2 hidden md:block" />
-      <div className="absolute bottom-20 right-0 w-[300px] h-[300px] rounded-full border border-white/5 translate-x-1/2 hidden md:block" />
+      {/* Automation Grid Background */}
+      <AutomationGrid />
+      
+      {/* Decorative circles - hidden on mobile */}
+      <div className="absolute top-20 left-1/4 w-[500px] h-[500px] rounded-full border border-foreground/5 -translate-x-1/2 hidden md:block" />
+      <div className="absolute bottom-20 right-0 w-[300px] h-[300px] rounded-full border border-foreground/5 translate-x-1/2 hidden md:block" />
 
-      <div className="max-w-7xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
           {/* Left side - Title */}
           <div className="flex-1">
@@ -80,13 +84,13 @@ const Hero = () => {
           >
             <a
               href="#projects"
-              className="px-6 md:px-8 py-3 md:py-4 bg-foreground text-background rounded-full font-code font-medium hover:bg-foreground/90 transition-colors text-sm md:text-base cursor-dark"
+              className="px-6 md:px-8 py-3 md:py-4 bg-foreground text-background rounded-full font-code font-medium hover:opacity-90 transition-opacity text-sm md:text-base cursor-dark"
             >
               Projects
             </a>
             <a
               href="#projects"
-              className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-foreground text-background flex items-center justify-center hover:bg-foreground/90 transition-colors cursor-dark"
+              className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-foreground text-background flex items-center justify-center hover:opacity-90 transition-opacity cursor-dark"
             >
               <svg
                 width="18"
