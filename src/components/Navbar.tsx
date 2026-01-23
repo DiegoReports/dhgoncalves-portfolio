@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const [language, setLanguage] = useState<"En" | "Pt">("En");
@@ -40,8 +41,11 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Right side: Language Switch + Mobile Menu */}
-          <div className="flex items-center gap-4">
+          {/* Right side: Theme Toggle + Language Switch + Mobile Menu */}
+          <div className="flex items-center gap-2 md:gap-4">
+            {/* Theme Toggle */}
+            <ThemeToggle />
+            
             {/* Language Switch */}
             <div className="flex items-center gap-1 font-code text-sm z-50">
               <button
