@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
@@ -6,6 +6,15 @@ import ThemeToggle from "./ThemeToggle";
 const Navbar = () => {
   const [language, setLanguage] = useState<"En" | "Pt">("En");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { name: "About", href: "#about" },
@@ -24,7 +33,11 @@ const Navbar = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="fixed top-0 left-0 right-0 z-50 px-4 py-4 md:px-12 lg:px-20 md:py-6"
+        className={`fixed top-0 left-0 right-0 z-50 px-4 py-4 md:px-12 lg:px-20 md:py-6 transition-all duration-300 ${
+          isScrolled
+            ? "navbar-scrolled backdrop-blur-xl"
+            : ""
+        }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo / Name */}
