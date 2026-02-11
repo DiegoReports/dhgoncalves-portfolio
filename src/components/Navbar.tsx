@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
-  const [language, setLanguage] = useState<"En" | "Pt">("En");
+  const { language, setLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -17,10 +18,10 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Articles", href: "#articles" },
-    { name: "Contacts", href: "#contacts" },
+    { name: t("nav.about"), href: "#about" },
+    { name: t("nav.projects"), href: "#projects" },
+    { name: t("nav.articles"), href: "#articles" },
+    { name: t("nav.contacts"), href: "#contacts" },
   ];
 
   const handleLinkClick = () => {
@@ -34,53 +35,45 @@ const Navbar = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className={`fixed top-0 left-0 right-0 z-50 px-4 py-4 md:px-12 lg:px-20 md:py-6 transition-all duration-300 ${
-          isScrolled
-            ? "navbar-scrolled backdrop-blur-xl"
-            : ""
+          isScrolled ? "navbar-scrolled backdrop-blur-xl" : ""
         }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo / Name */}
           <a href="#" className="font-code text-lg font-semibold text-foreground z-50">
             RPA<span className="text-muted-foreground">.dev</span>
           </a>
 
-          {/* Navigation Links - Desktop */}
           <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="nav-link">
+              <a key={link.href} href={link.href} className="nav-link">
                 {link.name}
               </a>
             ))}
           </div>
 
-          {/* Right side: Theme Toggle + Language Switch + Mobile Menu */}
           <div className="flex items-center gap-2 md:gap-4">
-            {/* Theme Toggle */}
             <ThemeToggle />
-            
-            {/* Language Switch */}
+
             <div className="flex items-center gap-1 font-code text-sm z-50">
               <button
-                onClick={() => setLanguage("En")}
+                onClick={() => setLanguage("en")}
                 className={`transition-colors duration-300 ${
-                  language === "En" ? "text-foreground" : "text-muted-foreground"
+                  language === "en" ? "text-foreground" : "text-muted-foreground"
                 }`}
               >
                 En
               </button>
               <span className="text-muted-foreground">/</span>
               <button
-                onClick={() => setLanguage("Pt")}
+                onClick={() => setLanguage("pt")}
                 className={`transition-colors duration-300 ${
-                  language === "Pt" ? "text-foreground" : "text-muted-foreground"
+                  language === "pt" ? "text-foreground" : "text-muted-foreground"
                 }`}
               >
                 Pt
               </button>
             </div>
 
-            {/* Hamburger Menu - Mobile */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden z-50 p-2"
@@ -92,7 +85,6 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -102,14 +94,11 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 md:hidden"
           >
-            {/* Glassmorphism background */}
             <div className="absolute inset-0 bg-background/90 backdrop-blur-xl" />
-            
-            {/* Menu content */}
             <div className="relative h-full flex flex-col items-center justify-center gap-8">
               {navLinks.map((link, index) => (
                 <motion.a
-                  key={link.name}
+                  key={link.href}
                   href={link.href}
                   onClick={handleLinkClick}
                   initial={{ opacity: 0, y: 20 }}
