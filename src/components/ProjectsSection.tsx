@@ -2,64 +2,78 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Github, ArrowUpRight } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ProjectsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t, language } = useLanguage();
 
   const projects = [
     {
-      title: "Invoice Automation Bot",
-      description:
-        "An end-to-end invoice processing solution that extracts data from PDFs, validates entries, and automatically updates the ERP system. Reduced processing time by 85%.",
-      techStack: ["UiPath", "Python", "SQL", "Azure"],
-      stat: "85%",
-      statLabel: "Time saved",
+      title: {
+        en: "Logistics Automation Bot",
+        pt: "Bot de Automação Logística",
+      },
+      description: {
+        en: "End-to-end automation bot developed with Rocketbot Studio for Imbera Cooling's logistics processes, covering mapping, documentation, integrated testing, and delivery.",
+        pt: "Bot de automação end-to-end desenvolvido com Rocketbot Studio para processos logísticos da Imbera Cooling, cobrindo mapeamento, documentação, testes integrados e entrega.",
+      },
+      techStack: ["Rocketbot Studio", "Python"],
+      stat: "100%",
+      statLabel: { en: "Automated", pt: "Automatizado" },
       emoji: "🤖",
     },
     {
-      title: "HR Onboarding Workflow",
-      description:
-        "Automated employee onboarding process including account creation, access provisioning, and document generation across multiple platforms.",
-      techStack: ["Power Automate", "SharePoint", "Azure AD"],
-      stat: "60%",
-      statLabel: "Faster onboarding",
-      emoji: "👥",
+      title: {
+        en: "RPA Operations Dashboard",
+        pt: "Dashboard de Operações RPA",
+      },
+      description: {
+        en: "Monitoring and performance indicators system for automated activities at DHL Supply Chain, with SQL database validation and Orchestrator management.",
+        pt: "Sistema de monitoramento e indicadores de desempenho para atividades automatizadas na DHL Supply Chain, com validação SQL e gestão no Orchestrator.",
+      },
+      techStack: ["UiPath", "SQL", "Orchestrator"],
+      stat: "85%",
+      statLabel: { en: "Time saved", pt: "Tempo economizado" },
+      emoji: "📊",
     },
     {
-      title: "Data Migration Pipeline",
-      description:
-        "Built a robust data migration pipeline to transfer legacy system records into a modern cloud platform with validation and error handling.",
-      techStack: ["Python", "PostgreSQL", "AWS", "Docker"],
-      stat: "99.9%",
-      statLabel: "Accuracy",
-      emoji: "📊",
+      title: {
+        en: "Banking Process Automation",
+        pt: "Automação de Processos Bancários",
+      },
+      description: {
+        en: "Automation of confidential data collection processes for Bradesco CPI, handling requests from legal authorities with agility and accuracy using VBA, MacroScheduler, and UiPath.",
+        pt: "Automação de processos de coleta de dados confidenciais para o Bradesco CPI, atendendo solicitações de autoridades legais com agilidade e precisão usando VBA, MacroScheduler e UiPath.",
+      },
+      techStack: ["VBA", "MacroScheduler", "UiPath"],
+      stat: "95%",
+      statLabel: { en: "Accuracy", pt: "Precisão" },
+      emoji: "🏦",
     },
   ];
 
   return (
     <section id="projects" className="py-16 md:py-24 px-4 md:px-12 lg:px-20 relative" ref={ref}>
-      {/* Decorative arc - hidden on mobile */}
       <div className="absolute top-0 right-1/4 w-[600px] h-[300px] border border-foreground/5 rounded-full -translate-y-1/2 hidden md:block" />
 
       <div className="max-w-7xl mx-auto">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="mb-10 md:mb-16 text-center"
         >
-          <span className="font-code text-muted-foreground text-xs md:text-sm">... /Projects ...</span>
+          <span className="font-code text-muted-foreground text-xs md:text-sm">{t("projects.breadcrumb")}</span>
         </motion.div>
 
-        {/* Projects */}
         <div className="space-y-16 md:space-y-20">
           {projects.map((project, index) => {
             const isEven = index % 2 === 1;
             return (
               <motion.div
-                key={project.title}
+                key={index}
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 + index * 0.2 }}
@@ -67,10 +81,8 @@ const ProjectsSection = () => {
                   isEven ? "lg:flex-row-reverse" : ""
                 }`}
               >
-                {/* Project visuals */}
                 <div className="w-full lg:w-1/2">
                   <div className="glass-card p-3 md:p-4 relative">
-                    {/* Main mockup */}
                     <div className="aspect-video rounded-lg md:rounded-xl bg-card-elevated overflow-hidden relative">
                       <div className="absolute inset-0 bg-gradient-to-br from-muted/50 to-card flex items-center justify-center">
                         <div className="text-center">
@@ -82,22 +94,19 @@ const ProjectsSection = () => {
                       </div>
                     </div>
 
-                    {/* Floating smaller card */}
                     <div className={`absolute -bottom-4 ${isEven ? '-left-2 md:-left-6' : '-right-2 md:-right-6'} w-24 md:w-32 h-18 md:h-24 glass-card p-2 md:p-3 flex items-center justify-center`}>
                       <div className="text-center">
                         <p className="font-code text-[10px] md:text-xs text-muted-foreground">Analytics</p>
                         <p className="font-code text-base md:text-lg font-bold text-foreground">{project.stat}</p>
-                        <p className="font-code text-[8px] md:text-[10px] text-muted-foreground">{project.statLabel}</p>
+                        <p className="font-code text-[8px] md:text-[10px] text-muted-foreground">{project.statLabel[language]}</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Project info */}
                 <div className="w-full lg:w-1/2">
-                  <h3 className="font-code text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4">{project.title}</h3>
+                  <h3 className="font-code text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4">{project.title[language]}</h3>
 
-                  {/* Tech stack pills */}
                   <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
                     {project.techStack.map((tech) => (
                       <span key={tech} className="pill text-muted-foreground text-xs md:text-sm px-2 md:px-3 py-1">
@@ -107,10 +116,9 @@ const ProjectsSection = () => {
                   </div>
 
                   <p className="text-muted-foreground font-body leading-relaxed mb-6 md:mb-8 text-sm md:text-base">
-                    {project.description}
+                    {project.description[language]}
                   </p>
 
-                  {/* Action buttons */}
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-card border border-border flex items-center justify-center">
                       <Github size={18} className="md:w-5 md:h-5" />

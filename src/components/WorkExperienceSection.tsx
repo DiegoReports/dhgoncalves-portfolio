@@ -2,69 +2,95 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { X } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface JobEntry {
   yearRange: string;
-  duration: string;
+  duration: Record<"en" | "pt", string>;
   company: string;
-  role: string;
+  client: string;
+  role: Record<"en" | "pt", string>;
   techStack: string;
-  description: string;
-  keyResults: string[];
+  description: Record<"en" | "pt", string>;
+  keyResults: Record<"en" | "pt", string[]>;
 }
 
 const jobs: JobEntry[] = [
   {
-    yearRange: "2023 -",
-    duration: "1 year 8 months",
-    company: "Tech Automation Co",
-    role: "Senior RPA Developer",
-    techStack: "UiPath & Python",
-    description: "Leading the RPA Center of Excellence, designing and deploying enterprise-grade automation solutions across finance, HR, and operations departments.",
-    keyResults: [
-      "Delivered 15+ production bots saving 2,000+ hours/month",
-      "Reduced invoice processing time by 85%",
-      "Established CI/CD pipeline for bot deployments",
-    ],
+    yearRange: "2025 -",
+    duration: { en: "Present", pt: "Atual" },
+    company: "Rocketbot (Chile)",
+    client: "Imbera Cooling",
+    role: { en: "RPA Developer", pt: "Desenvolvedor RPA" },
+    techStack: "Rocketbot Studio & Python",
+    description: {
+      en: "Develop automation bots using Rocketbot Studio for logistics processes. Participate in all stages: mapping, documentation, integrated testing, and final delivery.",
+      pt: "Desenvolvimento de bots de automação usando Rocketbot Studio para processos logísticos. Participação em todas as etapas: mapeamento, documentação, testes integrados e entrega final.",
+    },
+    keyResults: {
+      en: [
+        "Developed automation bots for logistics processes",
+        "Full lifecycle participation: mapping to delivery",
+        "Client: Imbera Cooling",
+      ],
+      pt: [
+        "Desenvolvimento de bots para processos logísticos",
+        "Participação em todo o ciclo: mapeamento à entrega",
+        "Cliente: Imbera Cooling",
+      ],
+    },
   },
   {
-    yearRange: "2021 - 2023",
-    duration: "2 years",
-    company: "Digital Solutions Inc",
-    role: "RPA Analyst",
-    techStack: "Power Automate & SQL",
-    description: "Analyzed business processes for automation opportunities and developed end-to-end workflow solutions using Microsoft's Power Platform ecosystem.",
-    keyResults: [
-      "Automated 30+ manual business processes",
-      "Created a reusable component library for the team",
-      "Trained 10+ team members on Power Automate",
-    ],
+    yearRange: "2022 - 2024",
+    duration: { en: "2 years", pt: "2 anos" },
+    company: "EARQ Consultoria",
+    client: "DHL Supply Chain",
+    role: { en: "Support Analyst", pt: "Analista de Suporte" },
+    techStack: "UiPath & SQL & Orchestrator",
+    description: {
+      en: "Monitored and supported RPA operations. Generated performance indicators for automated activities. Queried SQL databases to validate processes. Developed improvements and new RPA workflows in UiPath.",
+      pt: "Monitoramento e suporte de operações RPA. Geração de indicadores de desempenho para atividades automatizadas. Consultas SQL para validação de processos. Desenvolvimento de melhorias e novos fluxos RPA em UiPath.",
+    },
+    keyResults: {
+      en: [
+        "Monitored and supported RPA operations at DHL",
+        "Generated performance indicators for automated activities",
+        "Developed improvements and new RPA workflows in UiPath",
+        "Managed processes and queues in Orchestrator",
+      ],
+      pt: [
+        "Monitoramento e suporte de operações RPA na DHL",
+        "Geração de indicadores de desempenho",
+        "Desenvolvimento de melhorias e novos fluxos RPA em UiPath",
+        "Gestão de processos e filas no Orchestrator",
+      ],
+    },
   },
   {
-    yearRange: "2019 - 2021",
-    duration: "1 year 11 months",
-    company: "Process Labs",
-    role: "Automation Developer",
-    techStack: "UiPath & VBA",
-    description: "Developed automation scripts and bots for data entry, report generation, and cross-system data migration tasks.",
-    keyResults: [
-      "Built a data migration tool processing 100K+ records",
-      "Reduced manual data entry errors by 95%",
-      "Won internal hackathon for best automation project",
-    ],
-  },
-  {
-    yearRange: "2018 - 2019",
-    duration: "9 months",
-    company: "StartUp Hub",
-    role: "Junior Developer",
-    techStack: "Python & JavaScript",
-    description: "Contributed to web scraping tools and internal dashboard development, gaining foundational skills in automation and backend development.",
-    keyResults: [
-      "Built web scraping pipelines for market research",
-      "Developed an internal KPI tracking dashboard",
-      "Automated daily report generation workflows",
-    ],
+    yearRange: "2015 - 2022",
+    duration: { en: "7 years 3 months", pt: "7 anos e 3 meses" },
+    company: "SBK BPO",
+    client: "Bradesco CPI",
+    role: { en: "RPA Developer (Admin Analyst)", pt: "Desenvolvedor RPA (Analista Administrativo)" },
+    techStack: "VBA & MacroScheduler & UiPath",
+    description: {
+      en: "Assisted with confidential data collection for banking transfers. Handled requests from legal authorities, ensuring agility and accuracy in information delivery. Mapped automation opportunities and developed RPA processes using VBA, MacroScheduler, and UiPath.",
+      pt: "Auxílio na coleta de dados confidenciais para transferências bancárias. Atendimento a solicitações de autoridades legais, garantindo agilidade e precisão na entrega de informações. Mapeamento de oportunidades de automação e desenvolvimento de processos RPA usando VBA, MacroScheduler e UiPath.",
+    },
+    keyResults: {
+      en: [
+        "Mapped automation opportunities across banking processes",
+        "Developed RPA processes using VBA, MacroScheduler, and UiPath",
+        "Handled confidential data for Bradesco CPI",
+        "Collaborated with team to maintain service efficiency",
+      ],
+      pt: [
+        "Mapeamento de oportunidades de automação em processos bancários",
+        "Desenvolvimento de processos RPA com VBA, MacroScheduler e UiPath",
+        "Tratamento de dados confidenciais para o Bradesco CPI",
+        "Colaboração com a equipe para manter a eficiência do serviço",
+      ],
+    },
   },
 ];
 
@@ -72,9 +98,7 @@ const WorkExperienceSection = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [selectedJob, setSelectedJob] = useState<JobEntry | null>(null);
-
-  const totalYears = 4;
-  const totalMonths = 9;
+  const { t, language } = useLanguage();
 
   return (
     <section
@@ -83,17 +107,15 @@ const WorkExperienceSection = () => {
       className="py-16 md:py-24 lg:py-32 px-4 md:px-12 bg-background"
     >
       <div className="max-w-6xl mx-auto">
-        {/* Section Title */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="section-title text-right mb-10 md:mb-16 text-4xl md:text-5xl lg:text-6xl"
         >
-          Work
+          {t("work.title")}
         </motion.h2>
 
-        {/* Job Entries List */}
         <div className="border-t border-border">
           {jobs.map((job, index) => (
             <motion.div
@@ -111,14 +133,14 @@ const WorkExperienceSection = () => {
                     {job.yearRange}
                   </p>
                   <p className="text-xs text-muted-foreground transition-colors duration-300 group-hover:text-background/60">
-                    {job.duration}
+                    {job.duration[language]}
                   </p>
                 </div>
                 <p className="font-body text-base font-medium mb-1 text-foreground/90 transition-colors duration-300 group-hover:text-background">
                   {job.company}
                 </p>
                 <p className="font-code text-xs text-muted-foreground transition-colors duration-300 group-hover:text-background/80">
-                  {job.role}{" "}
+                  {job.role[language]}{" "}
                   <span className="transition-colors duration-300 group-hover:text-background/50">|</span>{" "}
                   {job.techStack}
                 </p>
@@ -131,7 +153,7 @@ const WorkExperienceSection = () => {
                     {job.yearRange}
                   </p>
                   <p className="text-sm text-muted-foreground transition-colors duration-300 group-hover:text-background/60">
-                    {job.duration}
+                    {job.duration[language]}
                   </p>
                 </div>
 
@@ -143,7 +165,7 @@ const WorkExperienceSection = () => {
 
                 <div className="col-span-6 flex items-center justify-end">
                   <p className="font-code text-sm lg:text-base text-right text-foreground/80 transition-colors duration-300 group-hover:text-background">
-                    {job.role}{" "}
+                    {job.role[language]}{" "}
                     <span className="text-muted-foreground transition-colors duration-300 group-hover:text-background/70">
                       |
                     </span>{" "}
@@ -155,16 +177,15 @@ const WorkExperienceSection = () => {
           ))}
         </div>
 
-        {/* Total Experience */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mt-6 md:mt-8 text-right"
         >
-          <p className="text-muted-foreground text-xs md:text-sm">Work experience</p>
+          <p className="text-muted-foreground text-xs md:text-sm">{t("work.total.label")}</p>
           <p className="font-code text-base md:text-lg text-foreground">
-            {totalYears} years {totalMonths} months
+            {t("work.total.value")}
           </p>
         </motion.div>
       </div>
@@ -179,10 +200,7 @@ const WorkExperienceSection = () => {
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedJob(null)}
           >
-            {/* Backdrop */}
             <div className="absolute inset-0 bg-background/80 backdrop-blur-md" />
-
-            {/* Modal content */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -191,7 +209,6 @@ const WorkExperienceSection = () => {
               className="relative w-full max-w-lg glass-card p-6 md:p-8"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close button */}
               <button
                 onClick={() => setSelectedJob(null)}
                 className="absolute top-4 right-4 p-1 text-muted-foreground hover:text-foreground transition-colors"
@@ -199,35 +216,34 @@ const WorkExperienceSection = () => {
                 <X size={20} />
               </button>
 
-              {/* Header */}
               <h3 className="font-code text-xl md:text-2xl font-bold mb-1">
                 {selectedJob.company}
               </h3>
-              <p className="font-code text-sm text-muted-foreground mb-6">
-                {selectedJob.role}
+              <p className="font-code text-sm text-muted-foreground mb-1">
+                {selectedJob.role[language]}
+              </p>
+              <p className="font-code text-xs text-muted-foreground/60 mb-6">
+                Client: {selectedJob.client}
               </p>
 
-              {/* Period */}
               <div className="mb-4">
-                <p className="font-code text-xs text-muted-foreground uppercase tracking-wider mb-1">Period</p>
+                <p className="font-code text-xs text-muted-foreground uppercase tracking-wider mb-1">{t("work.modal.period")}</p>
                 <p className="font-body text-sm text-foreground">
-                  {selectedJob.yearRange} · {selectedJob.duration}
+                  {selectedJob.yearRange} · {selectedJob.duration[language]}
                 </p>
               </div>
 
-              {/* Description */}
               <div className="mb-4">
-                <p className="font-code text-xs text-muted-foreground uppercase tracking-wider mb-1">Description</p>
+                <p className="font-code text-xs text-muted-foreground uppercase tracking-wider mb-1">{t("work.modal.description")}</p>
                 <p className="font-body text-sm text-foreground/80 leading-relaxed">
-                  {selectedJob.description}
+                  {selectedJob.description[language]}
                 </p>
               </div>
 
-              {/* Key Results */}
               <div>
-                <p className="font-code text-xs text-muted-foreground uppercase tracking-wider mb-2">Key Results</p>
+                <p className="font-code text-xs text-muted-foreground uppercase tracking-wider mb-2">{t("work.modal.results")}</p>
                 <ul className="space-y-2">
-                  {selectedJob.keyResults.map((result, i) => (
+                  {selectedJob.keyResults[language].map((result, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm font-body text-foreground/80">
                       <span className="text-muted-foreground mt-0.5">→</span>
                       {result}
@@ -236,10 +252,9 @@ const WorkExperienceSection = () => {
                 </ul>
               </div>
 
-              {/* Tech */}
               <div className="mt-6 pt-4 border-t border-border">
                 <p className="font-code text-xs text-muted-foreground">
-                  Stack: {selectedJob.techStack}
+                  {t("work.modal.stack")}: {selectedJob.techStack}
                 </p>
               </div>
             </motion.div>
