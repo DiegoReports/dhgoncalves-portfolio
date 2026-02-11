@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { X } from "lucide-react";
 
 interface JobEntry {
   yearRange: string;
@@ -8,6 +9,8 @@ interface JobEntry {
   company: string;
   role: string;
   techStack: string;
+  description: string;
+  keyResults: string[];
 }
 
 const jobs: JobEntry[] = [
@@ -17,6 +20,12 @@ const jobs: JobEntry[] = [
     company: "Tech Automation Co",
     role: "Senior RPA Developer",
     techStack: "UiPath & Python",
+    description: "Leading the RPA Center of Excellence, designing and deploying enterprise-grade automation solutions across finance, HR, and operations departments.",
+    keyResults: [
+      "Delivered 15+ production bots saving 2,000+ hours/month",
+      "Reduced invoice processing time by 85%",
+      "Established CI/CD pipeline for bot deployments",
+    ],
   },
   {
     yearRange: "2021 - 2023",
@@ -24,6 +33,12 @@ const jobs: JobEntry[] = [
     company: "Digital Solutions Inc",
     role: "RPA Analyst",
     techStack: "Power Automate & SQL",
+    description: "Analyzed business processes for automation opportunities and developed end-to-end workflow solutions using Microsoft's Power Platform ecosystem.",
+    keyResults: [
+      "Automated 30+ manual business processes",
+      "Created a reusable component library for the team",
+      "Trained 10+ team members on Power Automate",
+    ],
   },
   {
     yearRange: "2019 - 2021",
@@ -31,6 +46,12 @@ const jobs: JobEntry[] = [
     company: "Process Labs",
     role: "Automation Developer",
     techStack: "UiPath & VBA",
+    description: "Developed automation scripts and bots for data entry, report generation, and cross-system data migration tasks.",
+    keyResults: [
+      "Built a data migration tool processing 100K+ records",
+      "Reduced manual data entry errors by 95%",
+      "Won internal hackathon for best automation project",
+    ],
   },
   {
     yearRange: "2018 - 2019",
@@ -38,14 +59,20 @@ const jobs: JobEntry[] = [
     company: "StartUp Hub",
     role: "Junior Developer",
     techStack: "Python & JavaScript",
+    description: "Contributed to web scraping tools and internal dashboard development, gaining foundational skills in automation and backend development.",
+    keyResults: [
+      "Built web scraping pipelines for market research",
+      "Developed an internal KPI tracking dashboard",
+      "Automated daily report generation workflows",
+    ],
   },
 ];
 
 const WorkExperienceSection = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [selectedJob, setSelectedJob] = useState<JobEntry | null>(null);
 
-  // Calculate total experience
   const totalYears = 4;
   const totalMonths = 9;
 
@@ -56,7 +83,7 @@ const WorkExperienceSection = () => {
       className="py-16 md:py-24 lg:py-32 px-4 md:px-12 bg-background"
     >
       <div className="max-w-6xl mx-auto">
-        {/* Section Title - Right aligned */}
+        {/* Section Title */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -67,59 +94,57 @@ const WorkExperienceSection = () => {
         </motion.h2>
 
         {/* Job Entries List */}
-        <div className="border-t border-border/30">
+        <div className="border-t border-border">
           {jobs.map((job, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
-              className="work-entry group border-b border-border/30"
+              className="work-entry group border-b border-border cursor-pointer-custom"
+              onClick={() => setSelectedJob(job)}
             >
-              {/* Mobile Layout - Stacked */}
-              <div className="md:hidden py-4 px-3 -mx-3 transition-all duration-300 ease-out group-hover:bg-white group-hover:cursor-dark">
+              {/* Mobile Layout */}
+              <div className="md:hidden py-4 px-3 -mx-3 transition-all duration-300 ease-out group-hover:bg-foreground group-hover:cursor-dark">
                 <div className="flex justify-between items-start mb-2">
-                  <p className="font-code text-sm transition-colors duration-300 group-hover:text-black">
+                  <p className="font-code text-sm text-foreground/80 transition-colors duration-300 group-hover:text-background">
                     {job.yearRange}
                   </p>
-                  <p className="text-xs text-muted-foreground transition-colors duration-300 group-hover:text-black/60">
+                  <p className="text-xs text-muted-foreground transition-colors duration-300 group-hover:text-background/60">
                     {job.duration}
                   </p>
                 </div>
-                <p className="font-body text-base font-medium mb-1 transition-colors duration-300 group-hover:text-black">
+                <p className="font-body text-base font-medium mb-1 text-foreground/90 transition-colors duration-300 group-hover:text-background">
                   {job.company}
                 </p>
-                <p className="font-code text-xs text-muted-foreground transition-colors duration-300 group-hover:text-black/80">
+                <p className="font-code text-xs text-muted-foreground transition-colors duration-300 group-hover:text-background/80">
                   {job.role}{" "}
-                  <span className="transition-colors duration-300 group-hover:text-black/50">|</span>{" "}
+                  <span className="transition-colors duration-300 group-hover:text-background/50">|</span>{" "}
                   {job.techStack}
                 </p>
               </div>
 
-              {/* Desktop Layout - Grid */}
-              <div className="hidden md:grid grid-cols-12 gap-4 py-6 px-4 -mx-4 transition-all duration-300 ease-out group-hover:bg-white group-hover:cursor-dark">
-                {/* Left Column - Year Range */}
+              {/* Desktop Layout */}
+              <div className="hidden md:grid grid-cols-12 gap-4 py-6 px-4 -mx-4 transition-all duration-300 ease-out group-hover:bg-foreground group-hover:cursor-dark">
                 <div className="col-span-2">
-                  <p className="font-code text-base lg:text-lg transition-colors duration-300 group-hover:text-black">
+                  <p className="font-code text-base lg:text-lg text-foreground/80 transition-colors duration-300 group-hover:text-background">
                     {job.yearRange}
                   </p>
-                  <p className="text-sm text-muted-foreground transition-colors duration-300 group-hover:text-black/60">
+                  <p className="text-sm text-muted-foreground transition-colors duration-300 group-hover:text-background/60">
                     {job.duration}
                   </p>
                 </div>
 
-                {/* Middle Column - Company */}
                 <div className="col-span-4 flex items-center">
-                  <p className="font-body text-base lg:text-lg transition-colors duration-300 group-hover:text-black">
+                  <p className="font-body text-base lg:text-lg text-foreground/90 transition-colors duration-300 group-hover:text-background">
                     {job.company}
                   </p>
                 </div>
 
-                {/* Right Column - Role & Tech Stack */}
                 <div className="col-span-6 flex items-center justify-end">
-                  <p className="font-code text-sm lg:text-base text-right transition-colors duration-300 group-hover:text-black">
+                  <p className="font-code text-sm lg:text-base text-right text-foreground/80 transition-colors duration-300 group-hover:text-background">
                     {job.role}{" "}
-                    <span className="text-muted-foreground transition-colors duration-300 group-hover:text-black/70">
+                    <span className="text-muted-foreground transition-colors duration-300 group-hover:text-background/70">
                       |
                     </span>{" "}
                     {job.techStack}
@@ -130,7 +155,7 @@ const WorkExperienceSection = () => {
           ))}
         </div>
 
-        {/* Total Experience Summary */}
+        {/* Total Experience */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
@@ -143,6 +168,84 @@ const WorkExperienceSection = () => {
           </p>
         </motion.div>
       </div>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedJob && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedJob(null)}
+          >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-background/80 backdrop-blur-md" />
+
+            {/* Modal content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3 }}
+              className="relative w-full max-w-lg glass-card p-6 md:p-8"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setSelectedJob(null)}
+                className="absolute top-4 right-4 p-1 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Header */}
+              <h3 className="font-code text-xl md:text-2xl font-bold mb-1">
+                {selectedJob.company}
+              </h3>
+              <p className="font-code text-sm text-muted-foreground mb-6">
+                {selectedJob.role}
+              </p>
+
+              {/* Period */}
+              <div className="mb-4">
+                <p className="font-code text-xs text-muted-foreground uppercase tracking-wider mb-1">Period</p>
+                <p className="font-body text-sm text-foreground">
+                  {selectedJob.yearRange} · {selectedJob.duration}
+                </p>
+              </div>
+
+              {/* Description */}
+              <div className="mb-4">
+                <p className="font-code text-xs text-muted-foreground uppercase tracking-wider mb-1">Description</p>
+                <p className="font-body text-sm text-foreground/80 leading-relaxed">
+                  {selectedJob.description}
+                </p>
+              </div>
+
+              {/* Key Results */}
+              <div>
+                <p className="font-code text-xs text-muted-foreground uppercase tracking-wider mb-2">Key Results</p>
+                <ul className="space-y-2">
+                  {selectedJob.keyResults.map((result, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm font-body text-foreground/80">
+                      <span className="text-muted-foreground mt-0.5">→</span>
+                      {result}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Tech */}
+              <div className="mt-6 pt-4 border-t border-border">
+                <p className="font-code text-xs text-muted-foreground">
+                  Stack: {selectedJob.techStack}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

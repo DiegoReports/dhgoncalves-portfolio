@@ -13,12 +13,10 @@
     --background: 0 0% 7%;
     --foreground: 0 0% 96%;
     
-    /* Card surfaces with glassmorphism */
     --card: 0 0% 11%;
     --card-foreground: 0 0% 96%;
     --card-elevated: 0 0% 15%;
     
-    /* Skill card light backgrounds */
     --skill-card: 0 0% 96%;
     --skill-card-foreground: 0 0% 7%;
     
@@ -51,15 +49,15 @@
     --glass-border: 0 0% 100% / 0.1;
     --text-secondary: 0 0% 65%;
     
-    /* Decorative */
     --line-subtle: 0 0% 100% / 0.05;
     
-    /* Grid animation */
-    --grid-color: 0 0% 100% / 0.05;
-    --grid-accent: 0 0% 100% / 0.15;
+    /* Grid animation - MORE VISIBLE */
+    --grid-color: 0 0% 100% / 0.18;
+    --grid-accent: 0 0% 100% / 0.25;
     
     /* Cursor */
     --cursor-url: url('/cursors/cursor-white.png');
+    --cursor-pointer-url: url('/cursors/cursor-white.png');
   }
 
   .light {
@@ -67,12 +65,10 @@
     --background: 0 0% 98%;
     --foreground: 0 0% 7%;
     
-    /* Card surfaces */
     --card: 0 0% 100%;
     --card-foreground: 0 0% 7%;
     --card-elevated: 0 0% 97%;
     
-    /* Skill cards in light mode - slightly darker */
     --skill-card: 0 0% 96%;
     --skill-card-foreground: 0 0% 7%;
     
@@ -103,15 +99,15 @@
     --glass-border: 0 0% 0% / 0.1;
     --text-secondary: 0 0% 33%;
     
-    /* Decorative */
     --line-subtle: 0 0% 0% / 0.05;
     
-    /* Grid animation - cool gray for light mode */
-    --grid-color: 220 10% 50% / 0.08;
-    --grid-accent: 220 10% 40% / 0.2;
+    /* Grid animation - visible cool gray */
+    --grid-color: 220 10% 50% / 0.12;
+    --grid-accent: 220 10% 40% / 0.25;
     
     /* Cursor */
     --cursor-url: url('/cursors/cursor-black.png');
+    --cursor-pointer-url: url('/cursors/cursor-black.png');
   }
 }
 
@@ -135,11 +131,13 @@
   }
 
   a, button, [role="button"], input[type="submit"], input[type="button"] {
-    cursor: var(--cursor-url), pointer;
+    cursor: var(--cursor-pointer-url), pointer;
   }
 }
 
-/* Dark cursor for light/white backgrounds in dark mode */
+/* Cursor overrides for inverted backgrounds */
+
+/* When hovering work rows (foreground bg), use opposite cursor */
 :root:not(.light) .cursor-dark,
 :root:not(.light) .cursor-dark * {
   cursor: url('/cursors/cursor-black.png'), auto !important;
@@ -151,7 +149,6 @@
   cursor: url('/cursors/cursor-black.png'), pointer !important;
 }
 
-/* Light cursor for dark backgrounds in light mode */
 .light .cursor-light,
 .light .cursor-light * {
   cursor: url('/cursors/cursor-white.png'), auto !important;
@@ -161,6 +158,26 @@
 .light .cursor-light button,
 .light .cursor-light [role="button"] {
   cursor: url('/cursors/cursor-white.png'), pointer !important;
+}
+
+/* Clickable work rows get pointer cursor */
+.cursor-pointer-custom {
+  cursor: var(--cursor-pointer-url), pointer;
+}
+
+.cursor-pointer-custom * {
+  cursor: var(--cursor-pointer-url), pointer;
+}
+
+/* Navbar scroll effect */
+:root:not(.light) .navbar-scrolled {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.light .navbar-scrolled {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 @layer components {
@@ -208,7 +225,6 @@
     @apply bg-gradient-to-b from-black/5 to-transparent;
   }
 
-  /* Typewriter cursor */
   .typewriter-cursor {
     @apply inline-block w-[3px] h-[1em] bg-foreground ml-1 animate-pulse;
   }

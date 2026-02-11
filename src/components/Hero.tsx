@@ -1,25 +1,61 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Send } from "lucide-react";
 import AutomationGrid from "./AutomationGrid";
 
+const phrases = ["RPA Developer", "Automation Analyst", "Process Engineer"];
+
 const Hero = () => {
   const [displayedText, setDisplayedText] = useState("");
-  const fullText = "RPA Developer";
   const [showCursor, setShowCursor] = useState(true);
+  const phraseIndex = useRef(0);
+  const charIndex = useRef(0);
+  const isDeleting = useRef(false);
+  const isPaused = useRef(false);
+  const blinkCount = useRef(0);
 
   useEffect(() => {
-    let currentIndex = 0;
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setDisplayedText(fullText.slice(0, currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 100);
+    let timeout: ReturnType<typeof setTimeout>;
 
-    return () => clearInterval(typingInterval);
+    const tick = () => {
+      const currentPhrase = phrases[phraseIndex.current];
+
+      if (isPaused.current) {
+        // Blink cursor 3 times during pause
+        blinkCount.current++;
+        if (blinkCount.current >= 6) {
+          isPaused.current = false;
+          isDeleting.current = true;
+          blinkCount.current = 0;
+        }
+        timeout = setTimeout(tick, 400);
+        return;
+      }
+
+      if (isDeleting.current) {
+        charIndex.current--;
+        setDisplayedText(currentPhrase.slice(0, charIndex.current));
+        if (charIndex.current === 0) {
+          isDeleting.current = false;
+          phraseIndex.current = (phraseIndex.current + 1) % phrases.length;
+          timeout = setTimeout(tick, 300);
+          return;
+        }
+        timeout = setTimeout(tick, 50);
+      } else {
+        charIndex.current++;
+        setDisplayedText(currentPhrase.slice(0, charIndex.current));
+        if (charIndex.current === currentPhrase.length) {
+          isPaused.current = true;
+          timeout = setTimeout(tick, 400);
+          return;
+        }
+        timeout = setTimeout(tick, 100);
+      }
+    };
+
+    timeout = setTimeout(tick, 500);
+    return () => clearTimeout(timeout);
   }, []);
 
   useEffect(() => {
@@ -57,7 +93,7 @@ const Hero = () => {
             >
               <span className="block whitespace-nowrap">{displayedText}</span>
               <span
-                className={`inline-block w-[3px] md:w-[4px] h-[0.9em] bg-foreground ml-1 ${
+                className={`inline-block w-[3px] md:w-[4px] h-[0.9em] bg-foreground ml-1 transition-opacity duration-100 ${
                   showCursor ? "opacity-100" : "opacity-0"
                 }`}
               />
