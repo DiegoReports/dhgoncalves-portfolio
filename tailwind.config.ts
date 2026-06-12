@@ -96,5 +96,10 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("tailwindcss/plugin")(function ({ addVariant }) {
+      addVariant("theme-light", ".light &");
+    }),
+  ],
 } satisfies Config;
