@@ -57,9 +57,14 @@
     /* Grid animation */
     --grid-color: 0 0% 100% / 0.05;
     --grid-accent: 0 0% 100% / 0.15;
-    
-    /* Cursor */
-    --cursor-url: url('/cursors/cursor-white.png');
+
+    /* Cursors: embedded SVG (no external assets). Hotspot 12 12. */
+    --cursor-default: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='5' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='1.5' fill='%23fff'/%3E%3C/svg%3E")
+      12 12;
+    --cursor-on-light-surface: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='6' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='4' fill='none' stroke='%23000' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='1.5' fill='%23000'/%3E%3C/svg%3E")
+      12 12;
+    --cursor-on-dark-surface: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='5' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='1.5' fill='%23fff'/%3E%3C/svg%3E")
+      12 12;
   }
 
   .light {
@@ -109,16 +114,16 @@
     /* Grid animation - cool gray for light mode */
     --grid-color: 220 10% 50% / 0.08;
     --grid-accent: 220 10% 40% / 0.2;
-    
-    /* Cursor */
-    --cursor-url: url('/cursors/cursor-black.png');
+
+    --cursor-default: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='6' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='4' fill='none' stroke='%23000' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='1.5' fill='%23000'/%3E%3C/svg%3E")
+      12 12;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
-    cursor: var(--cursor-url), auto;
+    cursor: var(--cursor-default), auto;
   }
 
   html {
@@ -135,32 +140,32 @@
   }
 
   a, button, [role="button"], input[type="submit"], input[type="button"] {
-    cursor: var(--cursor-url), pointer;
+    cursor: var(--cursor-default), pointer;
   }
 }
 
-/* Dark cursor for light/white backgrounds in dark mode */
+/* cursor-dark = glyph for use on light surfaces (e.g. skill cards, inverted hovers). */
 :root:not(.light) .cursor-dark,
 :root:not(.light) .cursor-dark * {
-  cursor: url('/cursors/cursor-black.png'), auto !important;
+  cursor: var(--cursor-on-light-surface), auto !important;
 }
 
 :root:not(.light) .cursor-dark a,
 :root:not(.light) .cursor-dark button,
 :root:not(.light) .cursor-dark [role="button"] {
-  cursor: url('/cursors/cursor-black.png'), pointer !important;
+  cursor: var(--cursor-on-light-surface), pointer !important;
 }
 
-/* Light cursor for dark backgrounds in light mode */
+/* cursor-light = glyph for use on dark surfaces in light theme. */
 .light .cursor-light,
 .light .cursor-light * {
-  cursor: url('/cursors/cursor-white.png'), auto !important;
+  cursor: var(--cursor-on-dark-surface), auto !important;
 }
 
 .light .cursor-light a,
 .light .cursor-light button,
 .light .cursor-light [role="button"] {
-  cursor: url('/cursors/cursor-white.png'), pointer !important;
+  cursor: var(--cursor-on-dark-surface), pointer !important;
 }
 
 @layer components {
@@ -173,7 +178,7 @@
   }
 
   .glass-card {
-    @apply bg-card/70 backdrop-blur-xl border border-white/10 rounded-2xl;
+    @apply bg-card/70 backdrop-blur-xl border border-foreground/10 rounded-2xl;
   }
   
   .light .glass-card {
@@ -201,7 +206,7 @@
   }
 
   .decorative-line {
-    @apply absolute bg-gradient-to-b from-white/5 to-transparent;
+    @apply absolute bg-gradient-to-b from-foreground/5 to-transparent;
   }
   
   .light .decorative-line {
