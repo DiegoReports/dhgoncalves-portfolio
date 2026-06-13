@@ -19,7 +19,7 @@ const AutomationGrid = () => {
 
   const activateRandomCells = useCallback(() => {
     const newActiveCells = new Set<string>();
-    const numActive = Math.floor(Math.random() * 5) + 3;
+    const numActive = Math.floor(Math.random() * 8) + 5;
     
     for (let i = 0; i < numActive; i++) {
       const row = Math.floor(Math.random() * rows);
@@ -78,9 +78,7 @@ const AutomationGrid = () => {
             <path
               d={`M ${cellSize} 0 L 0 0 0 ${cellSize}`}
               fill="none"
-              stroke="currentColor"
-              strokeWidth="0.5"
-              className="text-foreground/[0.05] dark:text-foreground/[0.05]"
+              strokeWidth="0.8"
               style={{ stroke: "hsl(var(--grid-color))" }}
             />
           </pattern>
@@ -92,10 +90,10 @@ const AutomationGrid = () => {
           <motion.path
             d={`M ${tracePath.map(p => `${p.x + cellSize/2} ${p.y + cellSize/2}`).join(' L ')}`}
             fill="none"
-            strokeWidth="1"
+            strokeWidth="1.5"
             style={{ stroke: "hsl(var(--grid-accent))" }}
             initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: [0, 0.6, 0] }}
+            animate={{ pathLength: 1, opacity: [0, 0.8, 0] }}
             transition={{ duration: 3, ease: "easeInOut" }}
             key={tracePath.map(p => `${p.x}-${p.y}`).join(',')}
           />
@@ -117,7 +115,7 @@ const AutomationGrid = () => {
                 height: cellSize,
               }}
               initial={{ opacity: 0 }}
-              animate={{ opacity: [0, 0.15, 0] }}
+              animate={{ opacity: [0, 0.35, 0] }}
               transition={{ duration: 2, ease: "easeInOut" }}
             >
               <div 
@@ -141,7 +139,7 @@ const AutomationGrid = () => {
           }}
           animate={{
             y: [0, -10, 0],
-            opacity: [0.3, 0.6, 0.3],
+            opacity: [0.4, 0.8, 0.4],
           }}
           transition={{
             duration: 3 + i * 0.5,
