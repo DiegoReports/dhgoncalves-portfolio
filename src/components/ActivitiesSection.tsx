@@ -381,7 +381,7 @@ function PhotoCard({
   activities?: StravaActivity[];
   isInView: boolean;
 }) {
-  const photoSrc = siteUrls.profileImage;
+  const photoSrc = siteUrls.sportPhoto;
   const rawDate = activities?.[0]?.start_date_local;
   const dateObj = rawDate ? new Date(rawDate) : new Date();
   const dateStr = [
