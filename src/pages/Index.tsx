@@ -6,6 +6,7 @@ import ProjectsSection from "@/components/ProjectsSection";
 import ActivitiesSection from "@/components/ActivitiesSection";
 import ArticlesSection from "@/components/ArticlesSection";
 import Footer from "@/components/Footer";
+import BackToTopButton from "@/components/BackToTopButton";
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
       <ActivitiesSection />
       <ArticlesSection />
       <Footer />
+      <BackToTopButton />
     </div>
   );
 };
