@@ -22,10 +22,10 @@ export const siteUrls = {
   whatsapp:  envUrl("USER_CONTACT_WPP")   || envUrl("VITE_WHATSAPP_URL"),
   adidasRunning: envUrl("VITE_ADIDAS_RUNNING_URL"),
   stravaProfile: envUrl("VITE_STRAVA_PROFILE_URL"),
-  /** Optional full image URL or path under `public/` (e.g. `/profile.jpg`) */
+  /** Full image URL or local public/ path — falls back to bundled asset */
   profileImage: (() => {
     const v = readEnv("VITE_PROFILE_IMAGE");
-    return typeof v === "string" && v.length > 0 ? v : null;
+    return typeof v === "string" && v.length > 0 ? v : "/assets/profile-dh.png";
   })(),
   /** Optional sport photo for the Activities BentoGrid photo card */
   sportPhoto: (() => {

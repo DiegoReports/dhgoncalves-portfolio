@@ -381,7 +381,7 @@ function PhotoCard({
   activities?: StravaActivity[];
   isInView: boolean;
 }) {
-  const photoSrc = siteUrls.sportPhoto;
+  const photoSrc = siteUrls.profileImage;
   const rawDate = activities?.[0]?.start_date_local;
   const dateObj = rawDate ? new Date(rawDate) : new Date();
   const dateStr = [
@@ -392,17 +392,20 @@ function PhotoCard({
 
   return (
     <motion.div
-      className="glass-card overflow-hidden relative h-full min-h-[220px]"
+      className="glass-card overflow-hidden relative h-full min-h-[180px]"
       initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.6, delay: 0.1, type: "spring", stiffness: 400, damping: 25 }}
     >
       {photoSrc ? (
-        <img
+        <motion.img
           src={photoSrc}
-          alt="Sport"
-          className="absolute inset-0 w-full h-full object-cover"
+          alt="Profile"
+          className="absolute inset-0 w-full h-full object-cover object-top"
+          initial={{ filter: "grayscale(1)" }}
+          animate={isInView ? { filter: "grayscale(0)" } : { filter: "grayscale(1)" }}
+          transition={{ duration: 1.4, ease: "easeOut" }}
         />
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-muted to-card flex items-center justify-center">
