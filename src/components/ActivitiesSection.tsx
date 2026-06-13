@@ -402,7 +402,7 @@ function PhotoCard({
         <motion.img
           src={photoSrc}
           alt="Profile"
-          className="absolute inset-0 w-full h-full object-cover object-top"
+          className="absolute inset-0 w-full h-full object-contain object-center"
           initial={{ filter: "grayscale(1)" }}
           animate={isInView ? { filter: "grayscale(0)" } : { filter: "grayscale(1)" }}
           transition={{ duration: 1.4, ease: "easeOut" }}
