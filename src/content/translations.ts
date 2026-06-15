@@ -207,7 +207,7 @@ export const translations: Record<Locale, Copy> = {
           title: "Logistics Robot Suite",
           description:
             "End-to-end automation of logistics processes using Rocketbot Studio. Integration with SAP, Lincros and Glorian ERP systems, including web automation for banking portals. Full project lifecycle: process mapping, documentation, integrated testing and delivery.",
-          techStack: ["Rocketbot Studio", "SAP", "Web Automation", "APIs"],
+          techStack: ["Python", "Rocketbot Studio", "SAP", "Web Automation", "APIs"],
           thumbLabel: "Bot dashboard",
           statLabel: "Reduction",
           statValue: "80%",
@@ -217,7 +217,7 @@ export const translations: Record<Locale, Copy> = {
           title: "Supply Chain RPA Monitoring",
           description:
             "RPA monitoring and SQL-based reporting system for large-scale supply chain operations. Automated KPI extraction, inconsistency detection and process documentation supporting cross-functional teams across finance and operations departments.",
-          techStack: ["SQL Server", "Power Automate", "RPA Monitoring", "Process Docs"],
+          techStack: ["SQL Server", "Uipath", "RPA Monitoring", "Process Docs"],
           thumbLabel: "Dashboard",
           statLabel: "Coverage",
           statValue: "100%",
@@ -242,7 +242,7 @@ export const translations: Record<Locale, Copy> = {
     },
     articles: {
       sectionTitle: "Articles",
-      readMore: "Read more",
+      readMore: "coming soon ...",
       items: [
         {
           title: "How to optimize Python bots for enterprise scale",
@@ -391,7 +391,7 @@ export const translations: Record<Locale, Copy> = {
           title: "Suite de Robôs Logísticos",
           description:
             "Automação ponta a ponta de processos logísticos com Rocketbot Studio. Integração com SAP, Lincros e Glorian, incluindo automação web para portais bancários. Ciclo completo: mapeamento, documentação, testes integrados e entrega.",
-          techStack: ["Rocketbot Studio", "SAP", "Web Automation", "APIs"],
+          techStack: ["Python", "Rocketbot Studio", "SAP", "Web Automation", "APIs"],
           thumbLabel: "Painel do bot",
           statLabel: "Redução",
           statValue: "80%",
@@ -401,7 +401,7 @@ export const translations: Record<Locale, Copy> = {
           title: "Monitoramento RPA — Supply Chain",
           description:
             "Sistema de monitoramento RPA e relatórios SQL para operações de supply chain em larga escala. Extração automatizada de KPIs, detecção de inconsistências e documentação de processos, apoiando equipes de finanças e operações.",
-          techStack: ["SQL Server", "Power Automate", "Monitoramento RPA", "Documentação"],
+          techStack: ["SQL Server", "Uipath", "Monitoramento RPA", "Documentação"],
           thumbLabel: "Dashboard",
           statLabel: "Cobertura",
           statValue: "100%",
@@ -426,7 +426,7 @@ export const translations: Record<Locale, Copy> = {
     },
     articles: {
       sectionTitle: "Artigos",
-      readMore: "Ler mais",
+      readMore: "Em breve",
       items: [
         {
           title: "Como otimizar bots Python em escala empresarial",
