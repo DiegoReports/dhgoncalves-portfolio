@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { type JobEntry } from "@/content/translations";
 import { Badge } from "@/components/ui/badge";
+import CareerTimeline from "@/components/CareerTimeline";
 import {
   Dialog,
   DialogContent,
@@ -132,19 +133,32 @@ const WorkExperienceSection = () => {
       </div>
 
       <Dialog open={!!selectedJob} onOpenChange={() => setSelectedJob(null)}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="max-w-lg max-h-[88vh] flex flex-col overflow-hidden">
           <DialogHeader>
             <DialogTitle className="font-code text-xl">{selectedJob?.company}</DialogTitle>
             <DialogDescription className="font-code text-sm">
-              {selectedJob?.role}
+              {selectedJob?.careerPath
+                ? t.work.careerProgressionLabel
+                : selectedJob?.role}
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-4 pt-2">
+          <motion.div
+            key={selectedJob?.company}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="space-y-4 pt-2 overflow-y-auto flex-1 pr-1 dialog-scrollable"
+          >
             <div className="flex gap-3 text-sm font-code text-muted-foreground">
               <span>{selectedJob?.yearRange}</span>
               <span>·</span>
               <span>{selectedJob?.duration}</span>
             </div>
+            {selectedJob?.careerPath && (
+              <div className="pt-1">
+                <CareerTimeline steps={selectedJob.careerPath} />
+              </div>
+            )}
             <div className="flex flex-wrap gap-2">
               {selectedJob?.techStack.split(/[&,]/).map((tech) => (
                 <Badge key={tech.trim()} variant="secondary" className="font-code text-xs">
@@ -155,7 +169,7 @@ const WorkExperienceSection = () => {
             <p className="font-body text-sm leading-relaxed text-muted-foreground">
               {selectedJob?.details}
             </p>
-          </div>
+          </motion.div>
         </DialogContent>
       </Dialog>
     </section>
