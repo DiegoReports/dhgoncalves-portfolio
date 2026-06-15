@@ -334,7 +334,7 @@ export const translations: Record<Locale, Copy> = {
       skillsIntro3: "ferramentas e plataformas com que trabalho",
       skillGroups: [
         { title: "Ferramentas RPA", skills: ["Rocketbot Studio", "UiPath", "Power Automate", "BotCity"] },
-        { title: "Dev & Scripts", skills: ["Python", "NodeJS", "Git & GitHub", "PostgreSQL"] },
+        { title: "Dev & Scripts", skills: ["Python", "NodeJS", "Git & GitHub", "PostgreSQL", "SQL Server Management Studio"] },
         { title: "IA & Cloud", skills: ["Azure AI (IA900)", "OpenAI", "Claude", "MS Copilot", "Google Workspace / Gemini"] },
         { title: "Gestão de Projetos", skills: ["Jira", "Notion", "MS Planner / MS Project", "Power BI"] },
       ],
