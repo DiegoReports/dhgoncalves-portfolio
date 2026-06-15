@@ -250,3 +250,64 @@
     }
   }
 }
+
+/* react-vertical-timeline-component overrides */
+.vertical-timeline.vertical-timeline--one-column-left {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem 0;
+}
+
+/* Alinhar linha com o centro do ícone customizado (1.75rem wide, centro = 0.875rem) */
+.vertical-timeline--one-column-left::before {
+  left: 0.875rem !important;
+}
+
+/* Remover margens conflitantes; o ícone fica em left: 0, centrado na linha */
+.vertical-timeline--one-column-left .vertical-timeline-element-icon {
+  left: 0 !important;
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* A biblioteca posiciona o svg com position:relative + left/top/margin calculados para 24px.
+   Resetamos para que o flex do container acima possa centralizar corretamente. */
+.vertical-timeline--one-column-left .vertical-timeline-element-icon svg {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  left: auto !important;
+  top: auto !important;
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  display: block !important;
+}
+
+/* Espaço do conteúdo = largura do ícone + gap */
+.vertical-timeline--one-column-left .vertical-timeline-element-content {
+  margin-left: calc(1.75rem + 0.875rem) !important;
+}
+
+.career-timeline-date {
+  font-family: 'Fira Code', monospace !important;
+  font-size: 0.75rem !important;
+  color: hsl(var(--muted-foreground)) !important;
+  padding: 0 !important;
+  float: none !important;
+  opacity: 1 !important;
+}
+
+/* Scrollbar fina para o conteúdo do modal */
+.dialog-scrollable::-webkit-scrollbar {
+  width: 3px;
+}
+.dialog-scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+.dialog-scrollable::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 2px;
+}

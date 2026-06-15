@@ -1,6 +1,11 @@
 export type Locale = "en" | "pt";
 
 export type ArticleEntry = { title: string; excerpt: string; href: string };
+export type CareerStep = {
+  role: string;
+  startDate: string;
+};
+
 export type JobEntry = {
   yearRange: string;
   duration: string;
@@ -8,6 +13,7 @@ export type JobEntry = {
   role: string;
   techStack: string;
   details: string;
+  careerPath?: CareerStep[];
 };
 
 type Copy = {
@@ -49,6 +55,7 @@ type Copy = {
     durationYearLabel: string;
     durationMonthLabel: string;
     viewDetails: string;
+    careerProgressionLabel: string;
     jobs: JobEntry[];
   };
   projects: {
@@ -143,7 +150,7 @@ export const translations: Record<Locale, Copy> = {
       skillsIntro3: "tools and platforms I work with",
       skillGroups: [
         { title: "RPA Tools", skills: ["Rocketbot Studio", "UiPath", "Power Automate", "BotCity"] },
-        { title: "Dev & Scripting", skills: ["Python", "NodeJS", "Git & GitHub", "PostgreSQL"] },
+        { title: "Dev & Scripting", skills: ["Python", "NodeJS", "Git & GitHub", "PostgreSQL", "SQL Server Management Studio"] },
         { title: "AI & Cloud", skills: ["Azure AI (IA900)", "OpenAI", "Claude", "MS Copilot", "Google Workspace / Gemini"] },
         { title: "Project Management", skills: ["Jira", "Notion", "MS Planner / MS Project", "Power BI"] },
       ],
@@ -157,13 +164,14 @@ export const translations: Record<Locale, Copy> = {
       durationYearLabel: "years",
       durationMonthLabel: "months",
       viewDetails: "View details",
+      careerProgressionLabel: "Career Progression",
       jobs: [
         {
           yearRange: "2025 -",
           duration: "1 year 5 months",
           company: "Rocketbot (Chile)",
           role: "RPA Developer",
-          techStack: "Rocketbot Studio · SAP · Lincros · Glorian",
+          techStack: "Python · Rocketbot Studio · SAP · Lincros · Glorian",
           details:
             "Developing robots with Rocketbot Studio to automate logistics processes. Integration with SAP, Lincros and Glorian ERP systems. Web automation targeting banking portals. Involved in all project stages: process mapping, documentation, integrated testing and final delivery. Client: Imbera Cooling.",
         },
@@ -172,7 +180,7 @@ export const translations: Record<Locale, Copy> = {
           duration: "2 years",
           company: "EARQ Consultoria",
           role: "Support Analyst",
-          techStack: "RPA · SQL · Process Monitoring",
+          techStack: "Uipath · Orquestrator · SQL · Process Monitoring",
           details:
             "Update and monitoring of automated activities and operational databases. KPI report generation with data extracted via SQL. Daily technical support for RPA tools and inconsistency analysis. Process documentation and improvement tracking in a collaborative environment with operations teams. Client: DHL Supply Chain.",
         },
@@ -184,6 +192,11 @@ export const translations: Record<Locale, Copy> = {
           techStack: "Process Automation · Documentation · Operations",
           details:
             "Handling legal requests and sensitive information with high organizational standards. Operational task and deadline tracking focused on data completeness and accuracy. Internal process mapping and documentation, prioritizing clarity and knowledge reuse. Support for operational routines focused on consistency and standardization. Client: Bradesco CPI.",
+          careerPath: [
+            { role: "Operational Assistant", startDate: "March/2015" },
+            { role: "Administrative Analyst", startDate: "September/2018" },
+            { role: "RPA Developer", startDate: "March/2019" },
+          ],
         },
       ],
     },
@@ -335,13 +348,14 @@ export const translations: Record<Locale, Copy> = {
       durationYearLabel: "anos",
       durationMonthLabel: "meses",
       viewDetails: "Ver detalhes",
+      careerProgressionLabel: "Progressão de Carreira",
       jobs: [
         {
           yearRange: "2025 -",
           duration: "1 ano e 5 meses",
           company: "Rocketbot (Chile)",
           role: "Desenvolvedor RPA",
-          techStack: "Rocketbot Studio · SAP · Lincros · Glorian",
+          techStack: "Python · Rocketbot Studio · SAP · Lincros · Glorian",
           details:
             "Desenvolver robôs com Rocketbot Studio para automatização de processos logísticos. Integração com sistemas como SAP, Lincros e Glorian. Automatizações Web voltadas para sites bancários. Participação em todas as etapas: mapeamento, documentação, testes integrados e entrega final. Cliente: Imbera Cooling.",
         },
@@ -350,7 +364,7 @@ export const translations: Record<Locale, Copy> = {
           duration: "2 anos",
           company: "EARQ Consultoria",
           role: "Analista de Suporte",
-          techStack: "RPA · SQL · Monitoramento Operacional",
+          techStack: "Uipath · Orquestrator · SQL · Monitoramento Operacional",
           details:
             "Atualização e monitoramento de atividades automatizadas e bases de dados operacionais. Geração de relatórios e indicadores com dados extraídos via SQL. Suporte técnico diário a ferramentas de RPA e análise de inconsistências. Documentação de processos e controle de melhorias em ambiente colaborativo com equipes de operações. Cliente: DHL Supply Chain.",
         },
@@ -362,6 +376,11 @@ export const translations: Record<Locale, Copy> = {
           techStack: "Automação de Processos · Documentação · Operações",
           details:
             "Atendimento a solicitações jurídicas e levantamento de informações sensíveis, com alto nível de organização e controle. Acompanhamento de tarefas e prazos operacionais com foco na completude e precisão dos dados. Mapeamento e documentação de processos internos, priorizando clareza e reutilização de conhecimento. Apoio na execução de rotinas operacionais com foco em consistência e padronização. Cliente: Bradesco CPI.",
+          careerPath: [
+            { role: "Auxiliar Operacional", startDate: "Março/2015" },
+            { role: "Analista Administrativo", startDate: "Setembro/2018" },
+            { role: "Desenvolvedor RPA", startDate: "Março/2019" },
+          ],
         },
       ],
     },
