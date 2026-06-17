@@ -42,7 +42,7 @@ const ProjectsSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-br from-muted/50 to-card flex items-center justify-center">
                       <div className="text-center">
                         <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-muted-foreground/20 mx-auto mb-2 md:mb-3 flex items-center justify-center">
-                          <span className="font-code text-xl md:text-2xl">🤖</span>
+                          <span className="font-code text-xl md:text-2xl">{project.thumbEmoji ?? "🤖"}</span>
                         </div>
                         <p className="font-code text-[10px] md:text-xs text-muted-foreground">{project.thumbLabel}</p>
                       </div>

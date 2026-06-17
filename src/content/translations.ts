@@ -65,6 +65,7 @@ type Copy = {
       description: string;
       techStack: string[];
       thumbLabel: string;
+      thumbEmoji?: string;
       statLabel: string;
       statValue: string;
       statSub: string;
@@ -125,11 +126,11 @@ export const translations: Record<Locale, Copy> = {
       contacts: "Contacts",
     },
     hero: {
-      titles: ["RPA Developer", "Low-code Developer", "AI Developer", "Automation Engineer"],
+      titles: ["RPA Developer", "Web Developer", "Full Stack Developer", "Low-code Developer", "AI Developer", "Automation Engineer"],
       subtitleLead: "My goal is to",
       subtitleBold1: "automate processes",
-      subtitleMid: ", write",
-      subtitleBoldItalic: "clean and efficient code",
+      subtitleMid: " and build",
+      subtitleBoldItalic: "clean web solutions",
       subtitleTail: "to make business operations seamless.",
       projectsCta: "Projects",
       scrollDown: "Scroll down",
@@ -143,13 +144,14 @@ export const translations: Record<Locale, Copy> = {
     about: {
       kicker: "... /About me ...",
       headingLine1: "Hello! I'm a",
-      headingRole: "RPA Developer",
-      headingLine2: "10+ years in automation.",
+      headingRole: "RPA & Web Developer",
+      headingLine2: "10+ years building solutions.",
       skillsIntro1: "Some of my",
       skillsIntro2: "favorite technologies,",
       skillsIntro3: "tools and platforms I work with",
       skillGroups: [
         { title: "RPA Tools", skills: ["Rocketbot Studio", "UiPath", "Power Automate", "BotCity"] },
+        { title: "Frontend & Web", skills: ["React", "TypeScript", "TailwindCSS", "HTML5", "CSS3", "JavaScript"] },
         { title: "Dev & Scripting", skills: ["Python", "NodeJS", "Git & GitHub", "PostgreSQL", "SQL Server Management Studio"] },
         { title: "AI & Cloud", skills: ["Azure AI (IA900)", "OpenAI", "Claude", "MS Copilot", "Google Workspace / Gemini"] },
         { title: "Project Management", skills: ["Jira", "Notion", "MS Planner / MS Project", "Power BI"] },
@@ -174,6 +176,24 @@ export const translations: Record<Locale, Copy> = {
           techStack: "Python · Rocketbot Studio · SAP · Lincros · Glorian",
           details:
             "Developing robots with Rocketbot Studio to automate logistics processes. Integration with SAP, Lincros and Glorian ERP systems. Web automation targeting banking portals. Involved in all project stages: process mapping, documentation, integrated testing and final delivery. Client: Imbera Cooling.",
+        },
+        {
+          yearRange: "2024 - 2025",
+          duration: "~6 months",
+          company: "Freelance",
+          role: "Full Stack Developer",
+          techStack: "React · TypeScript · TailwindCSS · FastAPI · Python · PostgreSQL · Supabase",
+          details:
+            "Developed SGP (Production Management System) for an industrial client. Full-stack web application with service order tracking, sequential production stages, real-time monitoring via SSE, role-based access control (Admin/Operator), and an analytics dashboard. Deployed on Vercel (frontend), Railway (backend) and Supabase (PostgreSQL database).",
+        },
+        {
+          yearRange: "2025",
+          duration: "~2 months",
+          company: "Freelance",
+          role: "Frontend Developer",
+          techStack: "HTML5 · CSS3 · Bootstrap 5 · JavaScript",
+          details:
+            "Built a professional photography portfolio and services website for a client. Six-page static site (landing + 5 service categories) with an image gallery using Swiper carousel, WhatsApp-integrated contact form, animated statistics, and testimonials section.",
         },
         {
           yearRange: "2022 - 2024",
@@ -209,6 +229,7 @@ export const translations: Record<Locale, Copy> = {
             "End-to-end automation of logistics processes using Rocketbot Studio. Integration with SAP, Lincros and Glorian ERP systems, including web automation for banking portals. Full project lifecycle: process mapping, documentation, integrated testing and delivery.",
           techStack: ["Python", "Rocketbot Studio", "SAP", "Web Automation", "APIs"],
           thumbLabel: "Bot dashboard",
+          thumbEmoji: "🤖",
           statLabel: "Reduction",
           statValue: "80%",
           statSub: "Manual effort",
@@ -219,9 +240,32 @@ export const translations: Record<Locale, Copy> = {
             "RPA monitoring and SQL-based reporting system for large-scale supply chain operations. Automated KPI extraction, inconsistency detection and process documentation supporting cross-functional teams across finance and operations departments.",
           techStack: ["SQL Server", "Uipath", "RPA Monitoring", "Process Docs"],
           thumbLabel: "Dashboard",
+          thumbEmoji: "🤖",
           statLabel: "Coverage",
           statValue: "100%",
           statSub: "Process visibility",
+        },
+        {
+          title: "SGP – Production Management System",
+          description:
+            "Full-stack web application for industrial production order management. Features service order tracking, sequential production stages, real-time monitoring via SSE, role-based access control (Admin/Operator) and an analytics dashboard. Deployed on Vercel, Railway and Supabase.",
+          techStack: ["React", "TypeScript", "TailwindCSS", "FastAPI", "Python", "PostgreSQL", "Supabase"],
+          thumbLabel: "SGP system",
+          thumbEmoji: "🌐",
+          statLabel: "Access roles",
+          statValue: "2",
+          statSub: "Admin + Operator",
+        },
+        {
+          title: "Gizulinski Fotografia",
+          description:
+            "Professional photography portfolio and services website for a client. Six-page static site covering five service categories, with an image gallery, WhatsApp-integrated contact form, animated statistics and testimonials.",
+          techStack: ["HTML5", "CSS3", "Bootstrap 5", "JavaScript"],
+          thumbLabel: "Photography site",
+          thumbEmoji: "🎨",
+          statLabel: "Pages",
+          statValue: "6",
+          statSub: "Service categories",
         },
       ],
     },
@@ -274,7 +318,7 @@ export const translations: Record<Locale, Copy> = {
       ctaLine1: "Let's",
       ctaLine2: "Automate",
       subtitle1: "Full-stack",
-      subtitle2: "RPA developer",
+      subtitle2: "RPA & Web Developer",
       contactsKicker: "... /Contacts ...",
       navMain: "Main",
       siteCardTitle: "Site",
@@ -291,7 +335,7 @@ export const translations: Record<Locale, Copy> = {
         instagram: "Instagram",
         whatsapp: "WhatsApp",
       },
-      copyright: "© 2026 Diego Gonçalves · RPA Developer. All rights reserved.",
+      copyright: "© 2026 Diego Gonçalves · RPA & Web Developer. All rights reserved.",
     },
     notFound: {
       title: "404",
@@ -309,12 +353,12 @@ export const translations: Record<Locale, Copy> = {
       contacts: "Contatos",
     },
     hero: {
-      titles: ["Desenvolvedor RPA", "Desenvolvedor Low-code", "Desenvolvedor IA", "Engenheiro de Automação"],
+      titles: ["Desenvolvedor RPA", "Desenvolvedor Web", "Desenvolvedor Full Stack", "Desenvolvedor Low-code", "Desenvolvedor IA", "Engenheiro de Automação"],
       subtitleLead: "O meu objetivo é",
       subtitleBold1: "automatizar processos",
-      subtitleMid: ", escrever",
-      subtitleBoldItalic: "código limpo e eficiente",
-      subtitleTail: "para operações de negócio sem fricção.",
+      subtitleMid: " e construir",
+      subtitleBoldItalic: "soluções web eficientes",
+      subtitleTail: "para tornar as operações de negócio mais fluidas.",
       projectsCta: "Projetos",
       scrollDown: "Role para baixo",
       social: {
@@ -327,13 +371,14 @@ export const translations: Record<Locale, Copy> = {
     about: {
       kicker: "... /Sobre mim ...",
       headingLine1: "Olá! Sou",
-      headingRole: "Desenvolvedor RPA",
-      headingLine2: "10+ anos em automação.",
+      headingRole: "Desenvolvedor RPA & Web",
+      headingLine2: "10+ anos construindo soluções.",
       skillsIntro1: "Algumas das minhas",
       skillsIntro2: "tecnologias favoritas,",
       skillsIntro3: "ferramentas e plataformas com que trabalho",
       skillGroups: [
         { title: "Ferramentas RPA", skills: ["Rocketbot Studio", "UiPath", "Power Automate", "BotCity"] },
+        { title: "Frontend & Web", skills: ["React", "TypeScript", "TailwindCSS", "HTML5", "CSS3", "JavaScript"] },
         { title: "Dev & Scripts", skills: ["Python", "NodeJS", "Git & GitHub", "PostgreSQL", "SQL Server Management Studio"] },
         { title: "IA & Cloud", skills: ["Azure AI (IA900)", "OpenAI", "Claude", "MS Copilot", "Google Workspace / Gemini"] },
         { title: "Gestão de Projetos", skills: ["Jira", "Notion", "MS Planner / MS Project", "Power BI"] },
@@ -358,6 +403,24 @@ export const translations: Record<Locale, Copy> = {
           techStack: "Python · Rocketbot Studio · SAP · Lincros · Glorian",
           details:
             "Desenvolver robôs com Rocketbot Studio para automatização de processos logísticos. Integração com sistemas como SAP, Lincros e Glorian. Automatizações Web voltadas para sites bancários. Participação em todas as etapas: mapeamento, documentação, testes integrados e entrega final. Cliente: Imbera Cooling.",
+        },
+        {
+          yearRange: "2024 - 2025",
+          duration: "~6 meses",
+          company: "Freelance",
+          role: "Desenvolvedor Full Stack",
+          techStack: "React · TypeScript · TailwindCSS · FastAPI · Python · PostgreSQL · Supabase",
+          details:
+            "Desenvolvimento do SGP (Sistema de Gestão da Produção) para um cliente industrial. Aplicação web full-stack com controle de ordens de serviço, etapas sequenciais de produção, monitoramento em tempo real via SSE, controle de acesso por perfil (Admin/Operador) e dashboard de analytics. Deploy na Vercel (frontend), Railway (backend) e Supabase (PostgreSQL).",
+        },
+        {
+          yearRange: "2025",
+          duration: "~2 meses",
+          company: "Freelance",
+          role: "Desenvolvedor Frontend",
+          techStack: "HTML5 · CSS3 · Bootstrap 5 · JavaScript",
+          details:
+            "Desenvolvimento de site de portfólio e serviços de fotografia profissional para cliente. Site estático com 6 páginas (landing + 5 categorias de serviço), galeria de imagens com carrossel Swiper, formulário de contato integrado ao WhatsApp, estatísticas animadas e seção de depoimentos.",
         },
         {
           yearRange: "2022 - 2024",
@@ -393,6 +456,7 @@ export const translations: Record<Locale, Copy> = {
             "Automação ponta a ponta de processos logísticos com Rocketbot Studio. Integração com SAP, Lincros e Glorian, incluindo automação web para portais bancários. Ciclo completo: mapeamento, documentação, testes integrados e entrega.",
           techStack: ["Python", "Rocketbot Studio", "SAP", "Web Automation", "APIs"],
           thumbLabel: "Painel do bot",
+          thumbEmoji: "🤖",
           statLabel: "Redução",
           statValue: "80%",
           statSub: "Esforço manual",
@@ -403,9 +467,32 @@ export const translations: Record<Locale, Copy> = {
             "Sistema de monitoramento RPA e relatórios SQL para operações de supply chain em larga escala. Extração automatizada de KPIs, detecção de inconsistências e documentação de processos, apoiando equipes de finanças e operações.",
           techStack: ["SQL Server", "Uipath", "Monitoramento RPA", "Documentação"],
           thumbLabel: "Dashboard",
+          thumbEmoji: "🤖",
           statLabel: "Cobertura",
           statValue: "100%",
           statSub: "Visibilidade de processo",
+        },
+        {
+          title: "SGP – Sistema de Gestão da Produção",
+          description:
+            "Aplicação web full-stack para gestão de ordens de serviço em ambiente industrial. Funcionalidades: controle de ordens, etapas sequenciais de produção, monitoramento em tempo real via SSE, controle de acesso por perfil (Admin/Operador) e dashboard de analytics. Deploy na Vercel, Railway e Supabase.",
+          techStack: ["React", "TypeScript", "TailwindCSS", "FastAPI", "Python", "PostgreSQL", "Supabase"],
+          thumbLabel: "Sistema SGP",
+          thumbEmoji: "🌐",
+          statLabel: "Perfis de acesso",
+          statValue: "2",
+          statSub: "Admin + Operador",
+        },
+        {
+          title: "Gizulinski Fotografia",
+          description:
+            "Site de portfólio e serviços de fotografia profissional para cliente. Site estático com 6 páginas cobrindo cinco categorias de serviço, galeria de imagens, formulário de contato integrado ao WhatsApp, estatísticas animadas e depoimentos.",
+          techStack: ["HTML5", "CSS3", "Bootstrap 5", "JavaScript"],
+          thumbLabel: "Site de fotografia",
+          thumbEmoji: "🎨",
+          statLabel: "Páginas",
+          statValue: "6",
+          statSub: "Categorias de serviço",
         },
       ],
     },
@@ -458,7 +545,7 @@ export const translations: Record<Locale, Copy> = {
       ctaLine1: "Vamos",
       ctaLine2: "Automatizar",
       subtitle1: "Full-stack",
-      subtitle2: "Desenvolvedor RPA",
+      subtitle2: "Desenvolvedor RPA & Web",
       contactsKicker: "... /Contatos ...",
       navMain: "Início",
       siteCardTitle: "Site",
@@ -475,7 +562,7 @@ export const translations: Record<Locale, Copy> = {
         instagram: "Instagram",
         whatsapp: "WhatsApp",
       },
-      copyright: "© 2026 Diego Gonçalves · Desenvolvedor RPA. Todos os direitos reservados.",
+      copyright: "© 2026 Diego Gonçalves · Desenvolvedor RPA & Web. Todos os direitos reservados.",
     },
     notFound: {
       title: "404",
