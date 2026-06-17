@@ -39,14 +39,22 @@ const ProjectsSection = () => {
               >
                 <div className="glass-card p-3 md:p-4 relative">
                   <div className="aspect-video rounded-lg md:rounded-xl bg-card-elevated overflow-hidden relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-muted/50 to-card flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-muted-foreground/20 mx-auto mb-2 md:mb-3 flex items-center justify-center">
-                          <span className="font-code text-xl md:text-2xl">{project.thumbEmoji ?? "🤖"}</span>
+                    {project.thumbImage ? (
+                      <img
+                        src={project.thumbImage}
+                        alt={project.thumbLabel}
+                        className="absolute inset-0 w-full h-full object-cover object-top"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-muted/50 to-card flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-muted-foreground/20 mx-auto mb-2 md:mb-3 flex items-center justify-center">
+                            <span className="font-code text-xl md:text-2xl">{project.thumbEmoji ?? "🤖"}</span>
+                          </div>
+                          <p className="font-code text-[10px] md:text-xs text-muted-foreground">{project.thumbLabel}</p>
                         </div>
-                        <p className="font-code text-[10px] md:text-xs text-muted-foreground">{project.thumbLabel}</p>
                       </div>
-                    </div>
+                    )}
                   </div>
 
                   <div className="absolute -bottom-4 -right-2 md:-bottom-6 md:-right-6 w-24 md:w-32 h-18 md:h-24 glass-card p-2 md:p-3 flex items-center justify-center">

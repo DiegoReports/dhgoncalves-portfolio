@@ -66,6 +66,7 @@ type Copy = {
       techStack: string[];
       thumbLabel: string;
       thumbEmoji?: string;
+      thumbImage?: string;
       statLabel: string;
       statValue: string;
       statSub: string;
@@ -252,6 +253,7 @@ export const translations: Record<Locale, Copy> = {
           techStack: ["React", "TypeScript", "TailwindCSS", "FastAPI", "Python", "PostgreSQL", "Supabase"],
           thumbLabel: "SGP system",
           thumbEmoji: "🌐",
+          thumbImage: "/assets/barromanager_screenshot.png",
           statLabel: "Access roles",
           statValue: "2",
           statSub: "Admin + Operator",
@@ -263,6 +265,7 @@ export const translations: Record<Locale, Copy> = {
           techStack: ["HTML5", "CSS3", "Bootstrap 5", "JavaScript"],
           thumbLabel: "Photography site",
           thumbEmoji: "🎨",
+          thumbImage: "/assets/gidzulinskifotografia_screenshot.png",
           statLabel: "Pages",
           statValue: "6",
           statSub: "Service categories",
@@ -479,6 +482,7 @@ export const translations: Record<Locale, Copy> = {
           techStack: ["React", "TypeScript", "TailwindCSS", "FastAPI", "Python", "PostgreSQL", "Supabase"],
           thumbLabel: "Sistema SGP",
           thumbEmoji: "🌐",
+          thumbImage: "/assets/barromanager_screenshot.png",
           statLabel: "Perfis de acesso",
           statValue: "2",
           statSub: "Admin + Operador",
@@ -490,6 +494,7 @@ export const translations: Record<Locale, Copy> = {
           techStack: ["HTML5", "CSS3", "Bootstrap 5", "JavaScript"],
           thumbLabel: "Site de fotografia",
           thumbEmoji: "🎨",
+          thumbImage: "/assets/gidzulinskifotografia_screenshot.png",
           statLabel: "Páginas",
           statValue: "6",
           statSub: "Categorias de serviço",
