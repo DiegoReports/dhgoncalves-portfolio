@@ -14,6 +14,7 @@ import {
   formatDuration,
   hasGpsRoute,
   type StravaActivity,
+  type StravaPhoto,
 } from "@/hooks/useStravaActivities";
 
 const STRAVA_ORANGE = "#FC4C02";
@@ -375,14 +376,15 @@ function ErrorCard({ label }: { label: string }) {
 // ── PhotoCard ─────────────────────────────────────────────────────────────────
 
 function PhotoCard({
-  activities,
+  photo,
   isInView,
 }: {
-  activities?: StravaActivity[];
+  photo?: StravaPhoto | null;
   isInView: boolean;
 }) {
-  const photoSrc = siteUrls.sportPhoto;
-  const rawDate = activities?.[0]?.start_date_local;
+  // Prefer the most recent Strava activity photo; fall back to the static one.
+  const photoSrc = photo?.url || siteUrls.sportPhoto;
+  const rawDate = photo?.date;
   const dateObj = rawDate ? new Date(rawDate) : new Date();
   const dateStr = [
     String(dateObj.getDate()).padStart(2, "0"),
@@ -400,9 +402,12 @@ function PhotoCard({
     >
       {photoSrc ? (
         <motion.img
+          key={photoSrc}
           src={photoSrc}
-          alt="Profile"
-          className="absolute inset-0 w-full h-full object-contain object-center"
+          alt={photo?.url ? "Latest Strava activity" : "Profile"}
+          className={`absolute inset-0 w-full h-full object-center ${
+            photo?.url ? "object-cover" : "object-contain"
+          }`}
           initial={{ filter: "grayscale(1)" }}
           animate={isInView ? { filter: "grayscale(0)" } : { filter: "grayscale(1)" }}
           transition={{ duration: 1.4, ease: "easeOut" }}
@@ -487,7 +492,9 @@ const ActivitiesSection = () => {
   const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
-  const { data: activities, isLoading, isError } = useStravaActivities();
+  const { data, isLoading, isError } = useStravaActivities();
+  const activities = data?.activities;
+  const photo = data?.photo;
 
   const act1 = activities?.[0];
   const act2 = activities?.[1];
@@ -526,7 +533,7 @@ const ActivitiesSection = () => {
 
           {/* ── Photo card ── lg: col-span-2 */}
           <div className="md:col-span-2 lg:col-span-2">
-            <PhotoCard activities={activities} isInView={isInView} />
+            <PhotoCard photo={photo} isInView={isInView} />
           </div>
 
           {/* ── Hobbies card ── lg: col-span-1 (reduced from 2) */}

@@ -13,6 +13,17 @@ export type StravaActivity = {
   start_date_local: string;
 };
 
+export type StravaPhoto = {
+  url: string;
+  activityId: number;
+  date: string | null;
+};
+
+export type StravaData = {
+  activities: StravaActivity[];
+  photo: StravaPhoto | null;
+};
+
 function decodePolyline(encoded: string): [number, number][] {
   const points: [number, number][] = [];
   let index = 0;
@@ -118,18 +129,23 @@ export function getPolylinePoints(activity: StravaActivity): [number, number][] 
   return decodePolyline(encoded);
 }
 
-async function fetchStravaActivities(): Promise<StravaActivity[]> {
+async function fetchStravaData(): Promise<StravaData> {
   const res = await fetch("/api/strava");
   if (!res.ok) throw new Error("Failed to fetch Strava activities");
   const data = await res.json();
-  if (!Array.isArray(data)) throw new Error("Unexpected Strava response");
-  return data as StravaActivity[];
+  if (!data || !Array.isArray(data.activities)) {
+    throw new Error("Unexpected Strava response");
+  }
+  return {
+    activities: data.activities as StravaActivity[],
+    photo: (data.photo ?? null) as StravaPhoto | null,
+  };
 }
 
 export function useStravaActivities() {
-  return useQuery<StravaActivity[]>({
+  return useQuery<StravaData>({
     queryKey: ["strava-activities"],
-    queryFn: fetchStravaActivities,
+    queryFn: fetchStravaData,
     staleTime: 5 * 60 * 1000,
     retry: 1,
   });
