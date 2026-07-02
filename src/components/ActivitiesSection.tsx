@@ -504,12 +504,17 @@ const ActivitiesSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
-          className="flex items-center justify-between mb-10 md:mb-14"
+          className="mb-10 md:mb-14"
         >
-          <span className="font-code text-muted-foreground text-xs md:text-sm">
-            {t.activities.kicker}
-          </span>
-          <StatusBadge status={status} />
+          <div className="flex items-center justify-between">
+            <span className="font-code text-muted-foreground text-xs md:text-sm">
+              {t.activities.kicker}
+            </span>
+            <StatusBadge status={status} />
+          </div>
+          <h2 className="font-code text-xl sm:text-2xl md:text-3xl mt-3 md:mt-4 text-foreground">
+            {t.activities.heading}
+          </h2>
         </motion.div>
 
         {/* ── Bento grid ───────────────────────────────────────────────────────
@@ -533,9 +538,6 @@ const ActivitiesSection = () => {
             className="glass-card p-5 lg:col-span-1 flex flex-col justify-between gap-5 cursor-default"
           >
             <div>
-              <p className="font-code text-muted-foreground text-xs mb-1">
-                {t.activities.hobbiesTitle}
-              </p>
               <h3 className="font-code text-xl font-bold text-foreground leading-tight">
                 {t.activities.hobbiesTitle}
               </h3>

@@ -80,6 +80,7 @@ type Copy = {
   activities: {
     sectionTitle: string;
     kicker: string;
+    heading: string;
     hobbiesTitle: string;
     hobbies: { cycling: string; running: string; futsal: string };
     stravaLabel: string;
@@ -95,6 +96,7 @@ type Copy = {
   footer: {
     ctaLine1: string;
     ctaLine2: string;
+    ctaParagraph: string;
     subtitle1: string;
     subtitle2: string;
     contactsKicker: string;
@@ -275,6 +277,7 @@ export const translations: Record<Locale, Copy> = {
     activities: {
       sectionTitle: "Activities",
       kicker: "... /Hobbies & Activities ...",
+      heading: "Life beyond the code.",
       hobbiesTitle: "My Hobbies",
       hobbies: { cycling: "Cycling", running: "Running", futsal: "Futsal" },
       stravaLabel: "Latest on Strava",
@@ -320,6 +323,8 @@ export const translations: Record<Locale, Copy> = {
     footer: {
       ctaLine1: "Let's",
       ctaLine2: "Automate",
+      ctaParagraph:
+        "Got an idea for a project, website, or process you'd like to automate? I'd love to hear about it. Reach out and let's talk about how we can turn it into reality — no strings attached, just a friendly conversation to start.",
       subtitle1: "Full-stack",
       subtitle2: "RPA & Web Developer",
       contactsKicker: "... /Contacts ...",
@@ -504,6 +509,7 @@ export const translations: Record<Locale, Copy> = {
     activities: {
       sectionTitle: "Atividades",
       kicker: "... /Hobbies & Atividades ...",
+      heading: "A vida além do código.",
       hobbiesTitle: "Meus Hobbies",
       hobbies: { cycling: "Ciclismo", running: "Corrida", futsal: "Futsal" },
       stravaLabel: "Últimas no Strava",
@@ -549,6 +555,8 @@ export const translations: Record<Locale, Copy> = {
     footer: {
       ctaLine1: "Vamos",
       ctaLine2: "Automatizar",
+      ctaParagraph:
+        "Tem uma ideia de projeto, site ou processo que gostaria de automatizar? Vou adorar saber mais. Entre em contato e vamos conversar sobre como transformar isso em realidade — sem compromisso, apenas um bate-papo amistoso para começarmos.",
       subtitle1: "Full-stack",
       subtitle2: "Desenvolvedor RPA & Web",
       contactsKicker: "... /Contatos ...",

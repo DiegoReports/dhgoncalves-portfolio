@@ -54,7 +54,10 @@ const Footer = () => {
               <br />
               <span className="italic">{t.footer.ctaLine2}</span>
             </h2>
-            <p className="text-muted-foreground font-body mt-8">
+            <p className="text-muted-foreground font-body mt-8 max-w-md leading-relaxed">
+              {t.footer.ctaParagraph}
+            </p>
+            <p className="text-muted-foreground font-body mt-6">
               {t.footer.subtitle1}
               <br />
               {t.footer.subtitle2}

@@ -83,7 +83,7 @@ const AboutSection = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
+            className="relative self-start"
           >
             <div className="aspect-[4/5] md:aspect-[4/5] rounded-2xl md:rounded-3xl overflow-hidden bg-card-elevated relative">
               {profileSrc ? (

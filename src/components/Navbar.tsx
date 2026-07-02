@@ -34,7 +34,8 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <a href="#top" className="font-code text-lg font-semibold text-foreground z-50">
-            RPA<span className="text-muted-foreground">.dev</span>
+            D<span style={{ color: "#E7352B" }}>h</span>
+            <span className="text-muted-foreground"> Reports</span>
           </a>
 
           <div className="hidden md:flex items-center gap-10">
@@ -51,20 +52,20 @@ const Navbar = () => {
             <div className="flex items-center gap-1 font-code text-sm z-50">
               <button
                 type="button"
-                onClick={() => setLocale("en")}
-                className={`flex items-center gap-1 transition-colors duration-300 ${locale === "en" ? "text-foreground" : "text-muted-foreground"}`}
-              >
-                <span>🇺🇸</span>
-                <span>En</span>
-              </button>
-              <span className="text-muted-foreground">/</span>
-              <button
-                type="button"
                 onClick={() => setLocale("pt")}
                 className={`flex items-center gap-1 transition-colors duration-300 ${locale === "pt" ? "text-foreground" : "text-muted-foreground"}`}
               >
                 <span>🇧🇷</span>
                 <span>Pt</span>
+              </button>
+              <span className="text-muted-foreground">/</span>
+              <button
+                type="button"
+                onClick={() => setLocale("en")}
+                className={`flex items-center gap-1 transition-colors duration-300 ${locale === "en" ? "text-foreground" : "text-muted-foreground"}`}
+              >
+                <span>🇺🇸</span>
+                <span>En</span>
               </button>
             </div>
 
@@ -116,20 +117,20 @@ const Navbar = () => {
               >
                 <button
                   type="button"
-                  onClick={() => { setLocale("en"); handleLinkClick(); }}
-                  className={`flex items-center gap-1.5 transition-colors duration-300 ${locale === "en" ? "text-foreground" : "text-muted-foreground"}`}
-                >
-                  <span>🇺🇸</span>
-                  <span>En</span>
-                </button>
-                <span className="text-muted-foreground">/</span>
-                <button
-                  type="button"
                   onClick={() => { setLocale("pt"); handleLinkClick(); }}
                   className={`flex items-center gap-1.5 transition-colors duration-300 ${locale === "pt" ? "text-foreground" : "text-muted-foreground"}`}
                 >
                   <span>🇧🇷</span>
                   <span>Pt</span>
+                </button>
+                <span className="text-muted-foreground">/</span>
+                <button
+                  type="button"
+                  onClick={() => { setLocale("en"); handleLinkClick(); }}
+                  className={`flex items-center gap-1.5 transition-colors duration-300 ${locale === "en" ? "text-foreground" : "text-muted-foreground"}`}
+                >
+                  <span>🇺🇸</span>
+                  <span>En</span>
                 </button>
               </motion.div>
             </div>

@@ -1,5 +1,10 @@
-import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { translations, type Locale } from "@/content/translations";
+
+const HTML_LANG: Record<Locale, string> = {
+  pt: "pt-BR",
+  en: "en-US",
+};
 
 type LanguageContextValue = {
   locale: Locale;
@@ -10,11 +15,15 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+  const [locale, setLocaleState] = useState<Locale>("pt");
 
   const setLocale = useCallback((next: Locale) => {
     setLocaleState(next);
   }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = HTML_LANG[locale];
+  }, [locale]);
 
   const value = useMemo<LanguageContextValue>(
     () => ({
