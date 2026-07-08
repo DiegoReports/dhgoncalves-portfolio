@@ -199,6 +199,15 @@ export const translations: Record<Locale, Copy> = {
             "Built a professional photography portfolio and services website for a client. Six-page static site (landing + 5 service categories) with an image gallery using Swiper carousel, WhatsApp-integrated contact form, animated statistics, and testimonials section.",
         },
         {
+          yearRange: "2019 - 2025",
+          duration: "5 years 5 months",
+          company: "Hcode Treinamentos",
+          role: "Technology Instructor (AI Team)",
+          techStack: "OpenAI · Notion · Google Sheets · AppSheet · HTML5 · CSS3 · JavaScript",
+          details:
+            "Client: FIAP. Delivered training sessions and workshops on hard skills and No-Code/Low-Code development. Designed lesson plans, interactive materials and hands-on projects aligned with the job market, and mentored students and professionals transitioning into tech careers (OpenAI, Notion, Google Sheets, AppSheet). On the SPClick and RJClick projects, taught front-end fundamentals with HTML5, CSS3 and JavaScript through a real project mapping tourist spots in São Paulo and Rio de Janeiro. Result: dozens of professionals trained with a solid foundation in technology, AI tools and programming fundamentals.",
+        },
+        {
           yearRange: "2022 - 2024",
           duration: "2 years",
           company: "EARQ Consultoria",
@@ -429,6 +438,15 @@ export const translations: Record<Locale, Copy> = {
           techStack: "HTML5 · CSS3 · Bootstrap 5 · JavaScript",
           details:
             "Desenvolvimento de site de portfólio e serviços de fotografia profissional para cliente. Site estático com 6 páginas (landing + 5 categorias de serviço), galeria de imagens com carrossel Swiper, formulário de contato integrado ao WhatsApp, estatísticas animadas e seção de depoimentos.",
+        },
+        {
+          yearRange: "2019 - 2025",
+          duration: "5 anos 5 meses",
+          company: "Hcode Treinamentos",
+          role: "Instrutor de Tecnologia (AI Team)",
+          techStack: "OpenAI · Notion · Google Sheets · AppSheet · HTML5 · CSS3 · JavaScript",
+          details:
+            "Cliente: FIAP. Condução de treinamentos e workshops sobre hard skills e No-Code/Low-Code. Elaboração de planos de aula, materiais interativos e projetos práticos voltados para o mercado de trabalho, além de mentoria de alunos e profissionais em transição de carreira para áreas tecnológicas (OpenAI, Notion, Google Sheets, AppSheet). Nos projetos SPClick e RJClick, treinamento de fundamentos de Front-end com HTML5, CSS3 e JavaScript por meio de um projeto real com pontos turísticos de São Paulo e Rio de Janeiro. Resultado: formação de dezenas de profissionais com base sólida no uso da tecnologia, ferramentas de IA e fundamentos de programação.",
         },
         {
           yearRange: "2022 - 2024",
