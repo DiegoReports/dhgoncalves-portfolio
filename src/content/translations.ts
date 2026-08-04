@@ -116,6 +116,28 @@ type Copy = {
     message: string;
     back: string;
   };
+  cookieConsent: {
+    title: string;
+    description: string;
+    accept: string;
+    decline: string;
+    learnMore: string;
+    manageCookies: string;
+    privacyPolicyLink: string;
+  };
+  privacyPolicy: {
+    title: string;
+    lastUpdated: string;
+    dataCollected: { heading: string; body: string };
+    purpose: { heading: string; body: string };
+    googleAnalytics: { heading: string; body: string };
+    legalBasis: { heading: string; body: string };
+    howToWithdraw: { heading: string; body: string };
+    retention: { heading: string; body: string };
+    thirdPartySharing: { heading: string; body: string };
+    userRights: { heading: string; body: string[] };
+    contact: { heading: string; body: string };
+  };
 };
 
 export const translations: Record<Locale, Copy> = {
@@ -359,6 +381,73 @@ export const translations: Record<Locale, Copy> = {
       message: "This page does not exist.",
       back: "Back to home",
     },
+    cookieConsent: {
+      title: "Cookie preferences",
+      description:
+        "We use cookies to understand how you use this site, via Google Analytics.",
+      accept: "Accept",
+      decline: "Decline",
+      learnMore: "Learn more",
+      manageCookies: "Manage cookies",
+      privacyPolicyLink: "Privacy Policy",
+    },
+    privacyPolicy: {
+      title: "Privacy Policy",
+      lastUpdated: "Last updated: August 4, 2026",
+      dataCollected: {
+        heading: "1. What data we collect",
+        body:
+          "This site automatically collects browsing data through cookies and similar technologies, such as: pages visited, time spent, traffic source, device type and approximate location (city/country). We do not collect sensitive data or require sign-up to browse the site.",
+      },
+      purpose: {
+        heading: "2. Purpose of the collection",
+        body:
+          "This data is used solely to understand how visitors use the site, measure content performance and improve the browsing experience.",
+      },
+      googleAnalytics: {
+        heading: "3. Google Analytics and Google Signals",
+        body:
+          "We use Google Analytics (Google LLC) for audience measurement. When you accept cookies, we also enable Google Signals, a Google Analytics feature that allows: (i) cross-device measurement, associating your browsing across different devices when you are signed in to your Google Account; (ii) collection of aggregated demographic and interest data, provided by Google from personalized ads; (iii) use of this data for remarketing and advertising reporting purposes. This information is processed by Google in accordance with the Google Privacy Policy (policies.google.com/privacy) and can be managed directly in your Google Account, at myaccount.google.com/data-and-privacy.",
+      },
+      legalBasis: {
+        heading: "4. Legal basis (LGPD)",
+        body:
+          "The processing of this data is based on the data subject's consent (Art. 7, I and Art. 8 of Law No. 13,709/2018 — LGPD), obtained through the cookie notice shown on your first visit to the site.",
+      },
+      howToWithdraw: {
+        heading: "5. How to withdraw consent",
+        body:
+          "You can withdraw your consent at any time by clicking \"Manage cookies\" in the site footer and selecting \"Decline\". Withdrawal does not affect processing already carried out based on consent previously given.",
+      },
+      retention: {
+        heading: "6. Data retention",
+        body:
+          "Event data collected by Google Analytics is retained according to the default Google Analytics 4 configuration (14 months), after which it is automatically deleted by Google.",
+      },
+      thirdPartySharing: {
+        heading: "7. Sharing with third parties",
+        body:
+          "Data collected via Google Analytics/Google Signals is shared with Google LLC, the operator of these tools, under the terms of its data processing agreement. We do not sell or share data with other companies for our own marketing purposes.",
+      },
+      userRights: {
+        heading: "8. Your rights as a data subject (LGPD Art. 18)",
+        body: [
+          "Confirmation of the existence of processing",
+          "Access to your data",
+          "Correction of incomplete or outdated data",
+          "Anonymization, blocking or deletion of unnecessary data",
+          "Data portability",
+          "Deletion of data processed with consent",
+          "Information about third-party sharing",
+          "Revocation of consent at any time",
+        ],
+      },
+      contact: {
+        heading: "9. Contact",
+        body:
+          "To exercise your rights or ask questions about this policy, please reach out by e-mail:",
+      },
+    },
   },
   pt: {
     nav: {
@@ -599,6 +688,73 @@ export const translations: Record<Locale, Copy> = {
       title: "404",
       message: "Esta página não existe.",
       back: "Voltar ao início",
+    },
+    cookieConsent: {
+      title: "Preferências de cookies",
+      description:
+        "Usamos cookies para entender como você usa este site, via Google Analytics.",
+      accept: "Aceitar",
+      decline: "Recusar",
+      learnMore: "Saiba mais",
+      manageCookies: "Gerenciar cookies",
+      privacyPolicyLink: "Política de Privacidade",
+    },
+    privacyPolicy: {
+      title: "Política de Privacidade",
+      lastUpdated: "Última atualização: 4 de agosto de 2026",
+      dataCollected: {
+        heading: "1. Quais dados coletamos",
+        body:
+          "Este site coleta dados de navegação de forma automática por meio de cookies e tecnologias semelhantes, como: páginas visitadas, tempo de permanência, origem do acesso, tipo de dispositivo e localização aproximada (cidade/país). Não coletamos dados sensíveis nem solicitamos cadastro para navegação.",
+      },
+      purpose: {
+        heading: "2. Finalidade da coleta",
+        body:
+          "Esses dados são usados exclusivamente para entender como os visitantes utilizam o site, medir o desempenho de conteúdos e melhorar a experiência de navegação.",
+      },
+      googleAnalytics: {
+        heading: "3. Google Analytics e Google Signals",
+        body:
+          "Utilizamos o Google Analytics (Google LLC) para mensuração de audiência. Quando você aceita os cookies, ativamos também o Google Signals, um recurso do Google Analytics que permite: (i) mensuração entre dispositivos, associando sua navegação em diferentes aparelhos quando você está com sua Conta Google conectada; (ii) coleta de dados demográficos e de interesses agregados, fornecidos pelo Google a partir de anúncios personalizados; (iii) uso desses dados para fins de remarketing e relatórios de publicidade. Essas informações são tratadas pelo Google conforme a Política de Privacidade do Google (policies.google.com/privacy) e podem ser gerenciadas diretamente na sua Conta Google, em myaccount.google.com/data-and-privacy.",
+      },
+      legalBasis: {
+        heading: "4. Base legal (LGPD)",
+        body:
+          "O tratamento desses dados tem como base legal o consentimento do titular (Art. 7º, I e Art. 8º da Lei nº 13.709/2018 — LGPD), obtido por meio do aviso de cookies exibido na primeira visita ao site.",
+      },
+      howToWithdraw: {
+        heading: "5. Como revogar o consentimento",
+        body:
+          "Você pode revogar seu consentimento a qualquer momento clicando em \"Gerenciar cookies\", no rodapé do site, e selecionando \"Recusar\". A revogação não afeta tratamentos já realizados com base no consentimento anteriormente dado.",
+      },
+      retention: {
+        heading: "6. Retenção dos dados",
+        body:
+          "Os dados de eventos coletados pelo Google Analytics são retidos conforme a configuração padrão do Google Analytics 4 (14 meses), após os quais são automaticamente excluídos pelo Google.",
+      },
+      thirdPartySharing: {
+        heading: "7. Compartilhamento com terceiros",
+        body:
+          "Os dados coletados via Google Analytics/Google Signals são compartilhados com o Google LLC, operador dessas ferramentas, nos termos de seu contrato de processamento de dados. Não vendemos nem compartilhamos dados com outras empresas para fins de marketing próprio.",
+      },
+      userRights: {
+        heading: "8. Seus direitos como titular de dados (Art. 18 da LGPD)",
+        body: [
+          "Confirmação da existência de tratamento",
+          "Acesso aos dados",
+          "Correção de dados incompletos ou desatualizados",
+          "Anonimização, bloqueio ou eliminação de dados desnecessários",
+          "Portabilidade dos dados",
+          "Eliminação dos dados tratados com consentimento",
+          "Informação sobre compartilhamento com terceiros",
+          "Revogação do consentimento a qualquer momento",
+        ],
+      },
+      contact: {
+        heading: "9. Contato",
+        body:
+          "Para exercer seus direitos ou tirar dúvidas sobre esta política, entre em contato por e-mail:",
+      },
     },
   },
 };

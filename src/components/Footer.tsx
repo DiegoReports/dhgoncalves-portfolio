@@ -1,8 +1,10 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail, Instagram, ArrowUpRight } from "lucide-react";
 import { siteUrls } from "@/config/site";
 import { useLanguage } from "@/context/LanguageContext";
+import { useCookieConsent } from "@/hooks/useCookieConsent";
 
 const WhatsAppIcon = ({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -12,6 +14,7 @@ const WhatsAppIcon = ({ size = 18 }: { size?: number }) => (
 
 const Footer = () => {
   const { t } = useLanguage();
+  const { openPreferences } = useCookieConsent();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-50px" });
 
@@ -127,6 +130,21 @@ const Footer = () => {
           className="mt-16 pt-8 border-t border-border text-center"
         >
           <p className="font-code text-sm text-muted-foreground">{t.footer.copyright}</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-3">
+            <Link
+              to="/politica-de-privacidade"
+              className="font-code text-xs text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors"
+            >
+              {t.cookieConsent.privacyPolicyLink}
+            </Link>
+            <button
+              type="button"
+              onClick={openPreferences}
+              className="font-code text-xs text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors"
+            >
+              {t.cookieConsent.manageCookies}
+            </button>
+          </div>
         </motion.div>
       </div>
     </footer>
