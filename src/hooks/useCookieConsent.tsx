@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
+import { updateConsent } from "@/lib/consentMode";
 
 export type ConsentStatus = "accepted" | "declined" | null;
 
@@ -24,12 +25,14 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
   const [isBannerOpen, setIsBannerOpen] = useState(() => readStoredConsent() === null);
 
   const accept = useCallback(() => {
+    updateConsent(true);
     localStorage.setItem(CONSENT_KEY, "accepted");
     setStatus("accepted");
     setIsBannerOpen(false);
   }, []);
 
   const decline = useCallback(() => {
+    updateConsent(false);
     localStorage.setItem(CONSENT_KEY, "declined");
     setStatus("declined");
     setIsBannerOpen(false);
