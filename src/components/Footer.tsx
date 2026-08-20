@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail, Instagram, ArrowUpRight } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 import { siteUrls } from "@/config/site";
 import { useLanguage } from "@/context/LanguageContext";
 import { useCookieConsent } from "@/hooks/useCookieConsent";
@@ -37,7 +37,6 @@ const Footer = () => {
     { icon: Github, label: t.footer.social.github, href: siteUrls.github },
     { icon: Linkedin, label: t.footer.social.linkedin, href: siteUrls.linkedin },
     { icon: Mail, label: t.footer.social.email, href: siteUrls.email },
-    { icon: Instagram, label: t.footer.social.instagram, href: siteUrls.instagram },
     { icon: WhatsAppIcon, label: t.footer.social.whatsapp, href: siteUrls.whatsapp },
   ];
 

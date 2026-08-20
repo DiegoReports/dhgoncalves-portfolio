@@ -34,7 +34,7 @@ type Copy = {
     subtitleTail: string;
     projectsCta: string;
     scrollDown: string;
-    social: { github: string; linkedin: string; email: string; instagram: string };
+    social: { github: string; linkedin: string; email: string };
   };
   about: {
     kicker: string;
@@ -114,7 +114,7 @@ type Copy = {
     siteLine2b: string;
     siteLine3a: string;
     siteLine3b: string;
-    social: { github: string; linkedin: string; email: string; instagram: string; whatsapp: string };
+    social: { github: string; linkedin: string; email: string; whatsapp: string };
     copyright: string;
   };
   notFound: {
@@ -137,6 +137,7 @@ type Copy = {
     dataCollected: { heading: string; body: string };
     purpose: { heading: string; body: string };
     googleAnalytics: { heading: string; body: string };
+    strava: { heading: string; body: string };
     legalBasis: { heading: string; body: string };
     howToWithdraw: { heading: string; body: string };
     retention: { heading: string; body: string };
@@ -169,7 +170,6 @@ export const translations: Record<Locale, Copy> = {
         github: "Github",
         linkedin: "LinkedIn",
         email: "E-mail",
-        instagram: "Instagram",
       },
     },
     about: {
@@ -386,7 +386,6 @@ export const translations: Record<Locale, Copy> = {
         github: "Github",
         linkedin: "LinkedIn",
         email: "E-mail",
-        instagram: "Instagram",
         whatsapp: "WhatsApp",
       },
       copyright: "© 2026 Diego Gonçalves · RPA & Web Developer. All rights reserved.",
@@ -408,7 +407,7 @@ export const translations: Record<Locale, Copy> = {
     },
     privacyPolicy: {
       title: "Privacy Policy",
-      lastUpdated: "Last updated: August 4, 2026",
+      lastUpdated: "Last updated: August 20, 2026",
       dataCollected: {
         heading: "1. What data we collect",
         body:
@@ -424,28 +423,33 @@ export const translations: Record<Locale, Copy> = {
         body:
           "We use Google Analytics (Google LLC) for audience measurement. When you accept cookies, we also enable Google Signals, a Google Analytics feature that allows: (i) cross-device measurement, associating your browsing across different devices when you are signed in to your Google Account; (ii) collection of aggregated demographic and interest data, provided by Google from personalized ads; (iii) use of this data for remarketing and advertising reporting purposes. This information is processed by Google in accordance with the Google Privacy Policy (policies.google.com/privacy) and can be managed directly in your Google Account, at myaccount.google.com/data-and-privacy.",
       },
+      strava: {
+        heading: "4. Strava (Hobbies section)",
+        body:
+          "The Hobbies section displays public activities from the site owner's own Strava account. Only the sport type, distance, pace, duration, elevation gain, activity name and an approximate route outline are published. Precise geographic coordinates, addresses and exact activity times are never sent to your browser: routes are stripped of their start and end segments and converted server-side into a shape with no geographic reference, and dates are reduced to month and year. This data belongs to the site owner and does not involve any data about you as a visitor.",
+      },
       legalBasis: {
-        heading: "4. Legal basis (LGPD)",
+        heading: "5. Legal basis (LGPD)",
         body:
           "The processing of this data is based on the data subject's consent (Art. 7, I and Art. 8 of Law No. 13,709/2018 — LGPD), obtained through the cookie notice shown on your first visit to the site.",
       },
       howToWithdraw: {
-        heading: "5. How to withdraw consent",
+        heading: "6. How to withdraw consent",
         body:
           "You can withdraw your consent at any time by clicking \"Manage cookies\" in the site footer and selecting \"Decline\". Withdrawal does not affect processing already carried out based on consent previously given.",
       },
       retention: {
-        heading: "6. Data retention",
+        heading: "7. Data retention",
         body:
           "Event data collected by Google Analytics is retained according to the default Google Analytics 4 configuration (14 months), after which it is automatically deleted by Google.",
       },
       thirdPartySharing: {
-        heading: "7. Sharing with third parties",
+        heading: "8. Sharing with third parties",
         body:
           "Data collected via Google Analytics/Google Signals is shared with Google LLC, the operator of these tools, under the terms of its data processing agreement. We do not sell or share data with other companies for our own marketing purposes.",
       },
       userRights: {
-        heading: "8. Your rights as a data subject (LGPD Art. 18)",
+        heading: "9. Your rights as a data subject (LGPD Art. 18)",
         body: [
           "Confirmation of the existence of processing",
           "Access to your data",
@@ -458,7 +462,7 @@ export const translations: Record<Locale, Copy> = {
         ],
       },
       contact: {
-        heading: "9. Contact",
+        heading: "10. Contact",
         body:
           "To exercise your rights or ask questions about this policy, please reach out by e-mail:",
       },
@@ -486,7 +490,6 @@ export const translations: Record<Locale, Copy> = {
         github: "Github",
         linkedin: "LinkedIn",
         email: "E-mail",
-        instagram: "Instagram",
       },
     },
     about: {
@@ -703,7 +706,6 @@ export const translations: Record<Locale, Copy> = {
         github: "Github",
         linkedin: "LinkedIn",
         email: "E-mail",
-        instagram: "Instagram",
         whatsapp: "WhatsApp",
       },
       copyright: "© 2026 Diego Gonçalves · Desenvolvedor RPA & Web. Todos os direitos reservados.",
@@ -725,7 +727,7 @@ export const translations: Record<Locale, Copy> = {
     },
     privacyPolicy: {
       title: "Política de Privacidade",
-      lastUpdated: "Última atualização: 4 de agosto de 2026",
+      lastUpdated: "Última atualização: 20 de agosto de 2026",
       dataCollected: {
         heading: "1. Quais dados coletamos",
         body:
@@ -741,28 +743,33 @@ export const translations: Record<Locale, Copy> = {
         body:
           "Utilizamos o Google Analytics (Google LLC) para mensuração de audiência. Quando você aceita os cookies, ativamos também o Google Signals, um recurso do Google Analytics que permite: (i) mensuração entre dispositivos, associando sua navegação em diferentes aparelhos quando você está com sua Conta Google conectada; (ii) coleta de dados demográficos e de interesses agregados, fornecidos pelo Google a partir de anúncios personalizados; (iii) uso desses dados para fins de remarketing e relatórios de publicidade. Essas informações são tratadas pelo Google conforme a Política de Privacidade do Google (policies.google.com/privacy) e podem ser gerenciadas diretamente na sua Conta Google, em myaccount.google.com/data-and-privacy.",
       },
+      strava: {
+        heading: "4. Strava (seção Hobbies)",
+        body:
+          "A seção Hobbies exibe atividades públicas da conta Strava do próprio titular deste site. São publicados apenas modalidade, distância, ritmo, duração, ganho de elevação, nome da atividade e o formato aproximado do percurso. Coordenadas geográficas precisas, endereços e horários exatos das atividades nunca são enviados ao seu navegador: os percursos têm seus trechos inicial e final removidos e são convertidos no servidor em um formato sem qualquer referência geográfica, e as datas são reduzidas a mês e ano. Esses dados pertencem ao titular do site e não envolvem nenhum dado seu como visitante.",
+      },
       legalBasis: {
-        heading: "4. Base legal (LGPD)",
+        heading: "5. Base legal (LGPD)",
         body:
           "O tratamento desses dados tem como base legal o consentimento do titular (Art. 7º, I e Art. 8º da Lei nº 13.709/2018 — LGPD), obtido por meio do aviso de cookies exibido na primeira visita ao site.",
       },
       howToWithdraw: {
-        heading: "5. Como revogar o consentimento",
+        heading: "6. Como revogar o consentimento",
         body:
           "Você pode revogar seu consentimento a qualquer momento clicando em \"Gerenciar cookies\", no rodapé do site, e selecionando \"Recusar\". A revogação não afeta tratamentos já realizados com base no consentimento anteriormente dado.",
       },
       retention: {
-        heading: "6. Retenção dos dados",
+        heading: "7. Retenção dos dados",
         body:
           "Os dados de eventos coletados pelo Google Analytics são retidos conforme a configuração padrão do Google Analytics 4 (14 meses), após os quais são automaticamente excluídos pelo Google.",
       },
       thirdPartySharing: {
-        heading: "7. Compartilhamento com terceiros",
+        heading: "8. Compartilhamento com terceiros",
         body:
           "Os dados coletados via Google Analytics/Google Signals são compartilhados com o Google LLC, operador dessas ferramentas, nos termos de seu contrato de processamento de dados. Não vendemos nem compartilhamos dados com outras empresas para fins de marketing próprio.",
       },
       userRights: {
-        heading: "8. Seus direitos como titular de dados (Art. 18 da LGPD)",
+        heading: "9. Seus direitos como titular de dados (Art. 18 da LGPD)",
         body: [
           "Confirmação da existência de tratamento",
           "Acesso aos dados",
@@ -775,7 +782,7 @@ export const translations: Record<Locale, Copy> = {
         ],
       },
       contact: {
-        heading: "9. Contato",
+        heading: "10. Contato",
         body:
           "Para exercer seus direitos ou tirar dúvidas sobre esta política, entre em contato por e-mail:",
       },

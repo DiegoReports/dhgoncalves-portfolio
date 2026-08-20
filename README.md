@@ -204,7 +204,6 @@ Copy `.env.example` to `.env` and fill in your values before running.
 - [ ] Accessibility audit (ARIA labels, keyboard navigation, focus trap in modals)
 - [ ] Unit and integration test coverage (Vitest + Testing Library)
 - [ ] Strava activity stats summary (total km, total time, elevation)
-- [ ] CV PDF download button wired to `public/assets/cv_MAIO_2026_DEV_RPA.pdf`
 - [ ] Certifications section (Azure AI IA900 badge, etc.)
 
 ---

@@ -18,7 +18,6 @@ export const siteUrls = {
     if (!raw) return "#";
     return raw.startsWith("mailto:") || raw.startsWith("http") ? raw : `mailto:${raw}`;
   })(),
-  instagram: envUrl("USER_INSTAGRAM_URL") || envUrl("VITE_INSTAGRAM_URL"),
   whatsapp:  envUrl("USER_CONTACT_WPP")   || envUrl("VITE_WHATSAPP_URL"),
   adidasRunning: envUrl("VITE_ADIDAS_RUNNING_URL"),
   stravaProfile: envUrl("VITE_STRAVA_PROFILE_URL"),

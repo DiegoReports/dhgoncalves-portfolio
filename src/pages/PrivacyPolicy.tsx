@@ -10,6 +10,7 @@ const PrivacyPolicy = () => {
     p.dataCollected,
     p.purpose,
     p.googleAnalytics,
+    p.strava,
     p.legalBasis,
     p.howToWithdraw,
     p.retention,

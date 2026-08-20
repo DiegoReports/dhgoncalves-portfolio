@@ -1,5 +1,11 @@
 .env
 
+# Local scripts (may print credential material to stdout)
+scripts
+
+# Personal documents must not be published or committed
+public/assets/*.pdf
+
 # Logs
 logs
 *.log

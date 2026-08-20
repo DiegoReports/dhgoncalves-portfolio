@@ -1,5 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 
+/**
+ * Route shape as delivered by `/api/strava`: points already normalized to a
+ * 0..1 box server-side. No latitude/longitude ever reaches the browser.
+ */
+export type NormalizedRoute = {
+  points: [number, number][];
+  aspect: number;
+};
+
 export type StravaActivity = {
   id: number;
   name: string;
@@ -9,14 +18,15 @@ export type StravaActivity = {
   moving_time: number;
   average_speed: number;
   total_elevation_gain: number;
-  map: { summary_polyline: string };
-  start_date_local: string;
+  route: NormalizedRoute | null;
+  month: number;
+  year: number;
 };
 
 export type StravaPhoto = {
   url: string;
-  activityId: number;
-  date: string | null;
+  month: number;
+  year: number;
 };
 
 export type StravaData = {
@@ -24,70 +34,37 @@ export type StravaData = {
   photo: StravaPhoto | null;
 };
 
-function decodePolyline(encoded: string): [number, number][] {
-  const points: [number, number][] = [];
-  let index = 0;
-  let lat = 0;
-  let lng = 0;
-
-  while (index < encoded.length) {
-    let b: number;
-    let shift = 0;
-    let result = 0;
-    do {
-      b = encoded.charCodeAt(index++) - 63;
-      result |= (b & 0x1f) << shift;
-      shift += 5;
-    } while (b >= 0x20);
-    lat += result & 1 ? ~(result >> 1) : result >> 1;
-
-    shift = 0;
-    result = 0;
-    do {
-      b = encoded.charCodeAt(index++) - 63;
-      result |= (b & 0x1f) << shift;
-      shift += 5;
-    } while (b >= 0x20);
-    lng += result & 1 ? ~(result >> 1) : result >> 1;
-
-    points.push([lat / 1e5, lng / 1e5]);
-  }
-
-  return points;
-}
-
-export function normalizePolyline(
-  points: [number, number][],
+/**
+ * Fits the unit-box route into a width x height viewport, preserving the
+ * route's original proportions. Pure scaling — the input carries no
+ * geographic meaning, so neither does the output.
+ */
+export function normalizeRoute(
+  route: NormalizedRoute,
   width: number,
   height: number,
   padding = 8
 ): string {
+  const { points, aspect } = route;
   if (points.length === 0) return "";
 
-  const lats = points.map((p) => p[0]);
-  const lngs = points.map((p) => p[1]);
-  const minLat = Math.min(...lats);
-  const maxLat = Math.max(...lats);
-  const minLng = Math.min(...lngs);
-  const maxLng = Math.max(...lngs);
+  const availW = width - padding * 2;
+  const availH = height - padding * 2;
 
-  const latRange = maxLat - minLat || 1;
-  const lngRange = maxLng - minLng || 1;
-  const scale = Math.min(
-    (width - padding * 2) / lngRange,
-    (height - padding * 2) / latRange
-  );
+  let renderedW = availW;
+  let renderedH = availW / aspect;
+  if (renderedH > availH) {
+    renderedH = availH;
+    renderedW = availH * aspect;
+  }
 
-  // Center the scaled route within the viewport
-  const renderedW = lngRange * scale;
-  const renderedH = latRange * scale;
   const xStart = (width - renderedW) / 2;
   const yStart = (height - renderedH) / 2;
 
   return points
-    .map(([lat, lng]) => {
-      const x = xStart + (lng - minLng) * scale;
-      const y = yStart + renderedH - (lat - minLat) * scale;
+    .map(([ux, uy]) => {
+      const x = xStart + ux * renderedW;
+      const y = yStart + renderedH - uy * renderedH;
       return `${x.toFixed(1)},${y.toFixed(1)}`;
     })
     .join(" ");
@@ -120,13 +97,7 @@ export function formatDuration(seconds: number): string {
 }
 
 export function hasGpsRoute(activity: StravaActivity): boolean {
-  return !!activity?.map?.summary_polyline;
-}
-
-export function getPolylinePoints(activity: StravaActivity): [number, number][] {
-  const encoded = activity?.map?.summary_polyline;
-  if (!encoded) return [];
-  return decodePolyline(encoded);
+  return !!activity?.route && activity.route.points.length > 1;
 }
 
 async function fetchStravaData(): Promise<StravaData> {

@@ -6,9 +6,8 @@ import { useLanguage } from "@/context/LanguageContext";
 import { siteUrls } from "@/config/site";
 import {
   useStravaActivities,
-  normalizePolyline,
+  normalizeRoute,
   polylineToPath,
-  getPolylinePoints,
   formatDistance,
   formatPace,
   formatDuration,
@@ -111,8 +110,7 @@ function StatusBadge({ status }: { status: Status }) {
 function RouteMap({ activity, wide = false }: { activity: StravaActivity; wide?: boolean }) {
   const w = wide ? 480 : 240;
   const h = wide ? 130 : 115;
-  const points = getPolylinePoints(activity);
-  const polylineStr = normalizePolyline(points, w, h, 10);
+  const polylineStr = activity.route ? normalizeRoute(activity.route, w, h, 10) : "";
   const pathD = polylineToPath(polylineStr);
   const filterId = `glow-${activity.id}`;
 
@@ -378,19 +376,24 @@ function ErrorCard({ label }: { label: string }) {
 function PhotoCard({
   photo,
   isInView,
+  locale,
 }: {
   photo?: StravaPhoto | null;
   isInView: boolean;
+  locale: string;
 }) {
   // Prefer the most recent Strava activity photo; fall back to the static one.
   const photoSrc = photo?.url || siteUrls.sportPhoto;
-  const rawDate = photo?.date;
-  const dateObj = rawDate ? new Date(rawDate) : new Date();
-  const dateStr = [
-    String(dateObj.getDate()).padStart(2, "0"),
-    String(dateObj.getMonth() + 1).padStart(2, "0"),
-    dateObj.getFullYear(),
-  ].join(".");
+  // Month/year only — an exact date would expose the training routine.
+  const now = new Date();
+  const month = photo?.month ?? now.getMonth() + 1;
+  const year = photo?.year ?? now.getFullYear();
+  const dateStr = new Date(year, month - 1, 1)
+    .toLocaleDateString(locale === "pt" ? "pt-BR" : "en-US", {
+      month: "long",
+      year: "numeric",
+    })
+    .replace(/^\w/, (c) => c.toUpperCase());
 
   return (
     <motion.div
@@ -489,7 +492,7 @@ function StravaConnectCard({
 // ── ActivitiesSection ─────────────────────────────────────────────────────────
 
 const ActivitiesSection = () => {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
   const { data, isLoading, isError } = useStravaActivities();
@@ -533,7 +536,7 @@ const ActivitiesSection = () => {
 
           {/* ── Photo card ── lg: col-span-2 */}
           <div className="md:col-span-2 lg:col-span-2">
-            <PhotoCard photo={photo} isInView={isInView} />
+            <PhotoCard photo={photo} isInView={isInView} locale={locale} />
           </div>
 
           {/* ── Hobbies card ── lg: col-span-1 (reduced from 2) */}

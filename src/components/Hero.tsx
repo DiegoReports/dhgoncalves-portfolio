@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Instagram, ChevronDown } from "lucide-react";
+import { Github, Linkedin, Mail, ChevronDown } from "lucide-react";
 import AutomationGrid from "./AutomationGrid";
 import { siteUrls } from "@/config/site";
 import { useLanguage } from "@/context/LanguageContext";
@@ -67,7 +67,6 @@ const Hero = () => {
     { icon: Github, label: t.hero.social.github, href: siteUrls.github },
     { icon: Linkedin, label: t.hero.social.linkedin, href: siteUrls.linkedin },
     { icon: Mail, label: t.hero.social.email, href: siteUrls.email },
-    { icon: Instagram, label: t.hero.social.instagram, href: siteUrls.instagram },
   ];
 
   const ctaBlock = (className?: string) => (
