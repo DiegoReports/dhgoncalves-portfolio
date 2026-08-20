@@ -83,11 +83,19 @@ const AboutSection = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative self-start"
+            className="relative lg:self-start"
           >
             <div className="aspect-[4/5] md:aspect-[4/5] rounded-2xl md:rounded-3xl overflow-hidden bg-card-elevated relative">
               {profileSrc ? (
-                <img src={profileSrc} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                <motion.img
+                  key={profileSrc}
+                  src={profileSrc}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover"
+                  initial={{ filter: "grayscale(1)" }}
+                  animate={isInView ? { filter: "grayscale(0)" } : { filter: "grayscale(1)" }}
+                  transition={{ duration: 1.4, ease: "easeOut" }}
+                />
               ) : (
                 <div className="absolute inset-0 bg-gradient-to-br from-muted to-card flex items-center justify-center">
                   <div className="text-center">

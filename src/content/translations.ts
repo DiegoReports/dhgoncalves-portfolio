@@ -57,6 +57,11 @@ type Copy = {
     viewDetails: string;
     careerProgressionLabel: string;
     jobs: JobEntry[];
+    stats: {
+      rpa: { label: string; years: number; months: number };
+      instructor: { label: string; years: number; months: number };
+      total: { label: string; years: number; months: number };
+    };
   };
   projects: {
     kicker: string;
@@ -70,6 +75,7 @@ type Copy = {
       statLabel: string;
       statValue: string;
       statSub: string;
+      hideLinks?: boolean;
     }[];
   };
   articles: {
@@ -198,14 +204,14 @@ export const translations: Record<Locale, Copy> = {
           duration: "1 year 5 months",
           company: "Rocketbot (Chile)",
           role: "RPA Developer",
-          techStack: "Python · Rocketbot Studio · SAP · Lincros · Glorian",
+          techStack: "Python · Rocketbot Studio · SAP · Lincros · Glorian · Saturn Studio · MCP Rocketbot Studio",
           details:
-            "Developing robots with Rocketbot Studio to automate logistics processes. Integration with SAP, Lincros and Glorian ERP systems. Web automation targeting banking portals. Involved in all project stages: process mapping, documentation, integrated testing and final delivery. Client: Imbera Cooling.",
+            "Developing robots with Rocketbot Studio to automate logistics processes. Integration with SAP, Lincros and Glorian ERP systems. Web automation targeting banking portals. Involved in all project stages: process mapping, documentation, integrated testing and final delivery. Client: Imbera Cooling. Also built a project with Saturn Studio (an n8n-like automation tool), consuming the Exchange API to fetch multiple currency exchange rate conversions, with error handling, logging and automated triggers.",
         },
         {
-          yearRange: "2024 - 2025",
-          duration: "~6 months",
-          company: "Freelance",
+          yearRange: "2026 -",
+          duration: "3 months",
+          company: "Freelance - Barros Manager",
           role: "Full Stack Developer",
           techStack: "React · TypeScript · TailwindCSS · FastAPI · Python · PostgreSQL · Supabase",
           details:
@@ -214,7 +220,7 @@ export const translations: Record<Locale, Copy> = {
         {
           yearRange: "2025",
           duration: "~2 months",
-          company: "Freelance",
+          company: "Freelance - Gizulinski Fotografia",
           role: "Frontend Developer",
           techStack: "HTML5 · CSS3 · Bootstrap 5 · JavaScript",
           details:
@@ -253,6 +259,11 @@ export const translations: Record<Locale, Copy> = {
           ],
         },
       ],
+      stats: {
+        rpa: { label: "RPA Developer", years: 6, months: 5 },
+        instructor: { label: "Instructor", years: 5, months: 5 },
+        total: { label: "Total Experience", years: 10, months: 8 },
+      },
     },
     projects: {
       kicker: "... /Projects ...",
@@ -261,23 +272,27 @@ export const translations: Record<Locale, Copy> = {
           title: "Logistics Robot Suite",
           description:
             "End-to-end automation of logistics processes using Rocketbot Studio. Integration with SAP, Lincros and Glorian ERP systems, including web automation for banking portals. Full project lifecycle: process mapping, documentation, integrated testing and delivery.",
-          techStack: ["Python", "Rocketbot Studio", "SAP", "Web Automation", "APIs"],
+          techStack: ["Python", "Rocketbot Studio", "SAP", "Web Automation", "APIs", "Orchestrator"],
           thumbLabel: "Bot dashboard",
           thumbEmoji: "🤖",
+          thumbImage: "/assets/Rocketbot_dashboard.jpg",
           statLabel: "Reduction",
           statValue: "80%",
           statSub: "Manual effort",
+          hideLinks: true,
         },
         {
           title: "Supply Chain RPA Monitoring",
           description:
             "RPA monitoring and SQL-based reporting system for large-scale supply chain operations. Automated KPI extraction, inconsistency detection and process documentation supporting cross-functional teams across finance and operations departments.",
-          techStack: ["SQL Server", "Uipath", "RPA Monitoring", "Process Docs"],
+          techStack: ["SQL Server", "Uipath", "RPA Monitoring", "Process Docs", "Orchestrator", "Queues", "Packages", "Assets", "Triggers", "Reframework"],
           thumbLabel: "Dashboard",
           thumbEmoji: "🤖",
+          thumbImage: "/assets/Uipath_dashboard.jpg",
           statLabel: "Coverage",
           statValue: "100%",
           statSub: "Process visibility",
+          hideLinks: true,
         },
         {
           title: "SGP – Production Management System",
@@ -506,14 +521,14 @@ export const translations: Record<Locale, Copy> = {
           duration: "1 ano e 5 meses",
           company: "Rocketbot (Chile)",
           role: "Desenvolvedor RPA",
-          techStack: "Python · Rocketbot Studio · SAP · Lincros · Glorian",
+          techStack: "Python · Rocketbot Studio · SAP · Lincros · Glorian · Saturn Studio · MCP Rocketbot Studio",
           details:
-            "Desenvolver robôs com Rocketbot Studio para automatização de processos logísticos. Integração com sistemas como SAP, Lincros e Glorian. Automatizações Web voltadas para sites bancários. Participação em todas as etapas: mapeamento, documentação, testes integrados e entrega final. Cliente: Imbera Cooling.",
+            "Desenvolver robôs com Rocketbot Studio para automatização de processos logísticos. Integração com sistemas como SAP, Lincros e Glorian. Automatizações Web voltadas para sites bancários. Participação em todas as etapas: mapeamento, documentação, testes integrados e entrega final. Cliente: Imbera Cooling. Também desenvolvi um projeto com Saturn Studio (ferramenta similar ao n8n), consumindo a API Exchange para obter cotações de múltiplas conversões de taxa de câmbio, com tratamento de erros, geração de logs e triggers automatizados.",
         },
         {
-          yearRange: "2024 - 2025",
-          duration: "~6 meses",
-          company: "Freelance",
+          yearRange: "2026 -",
+          duration: "3 meses",
+          company: "Freelance - Barros Manager",
           role: "Desenvolvedor Full Stack",
           techStack: "React · TypeScript · TailwindCSS · FastAPI · Python · PostgreSQL · Supabase",
           details:
@@ -522,7 +537,7 @@ export const translations: Record<Locale, Copy> = {
         {
           yearRange: "2025",
           duration: "~2 meses",
-          company: "Freelance",
+          company: "Freelance - Gizulinski Fotografia",
           role: "Desenvolvedor Frontend",
           techStack: "HTML5 · CSS3 · Bootstrap 5 · JavaScript",
           details:
@@ -561,6 +576,11 @@ export const translations: Record<Locale, Copy> = {
           ],
         },
       ],
+      stats: {
+        rpa: { label: "Desenvolvedor RPA", years: 6, months: 5 },
+        instructor: { label: "Instrutor", years: 5, months: 5 },
+        total: { label: "Experiência Total", years: 10, months: 8 },
+      },
     },
     projects: {
       kicker: "... /Projetos ...",
@@ -569,23 +589,27 @@ export const translations: Record<Locale, Copy> = {
           title: "Suite de Robôs Logísticos",
           description:
             "Automação ponta a ponta de processos logísticos com Rocketbot Studio. Integração com SAP, Lincros e Glorian, incluindo automação web para portais bancários. Ciclo completo: mapeamento, documentação, testes integrados e entrega.",
-          techStack: ["Python", "Rocketbot Studio", "SAP", "Web Automation", "APIs"],
+          techStack: ["Python", "Rocketbot Studio", "SAP", "Web Automation", "APIs", "Orquestrador"],
           thumbLabel: "Painel do bot",
           thumbEmoji: "🤖",
+          thumbImage: "/assets/Rocketbot_dashboard.jpg",
           statLabel: "Redução",
           statValue: "80%",
           statSub: "Esforço manual",
+          hideLinks: true,
         },
         {
           title: "Monitoramento RPA — Supply Chain",
           description:
             "Sistema de monitoramento RPA e relatórios SQL para operações de supply chain em larga escala. Extração automatizada de KPIs, detecção de inconsistências e documentação de processos, apoiando equipes de finanças e operações.",
-          techStack: ["SQL Server", "Uipath", "Monitoramento RPA", "Documentação"],
+          techStack: ["SQL Server", "Uipath", "Monitoramento RPA", "Documentação", "Orchestrator", "Queues", "Packages", "Assets", "Triggers", "Reframework"],
           thumbLabel: "Dashboard",
           thumbEmoji: "🤖",
+          thumbImage: "/assets/Uipath_dashboard.jpg",
           statLabel: "Cobertura",
           statValue: "100%",
           statSub: "Visibilidade de processo",
+          hideLinks: true,
         },
         {
           title: "SGP – Sistema de Gestão da Produção",

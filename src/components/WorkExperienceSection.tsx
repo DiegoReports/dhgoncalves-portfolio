@@ -1,5 +1,6 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, useInView, animate } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { Bot, GraduationCap, Award, type LucideIcon } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { type JobEntry } from "@/content/translations";
 import { Badge } from "@/components/ui/badge";
@@ -15,6 +16,69 @@ import {
 const rowHover =
   "transition-all duration-300 ease-out group-hover:bg-foreground group-hover:cursor-dark theme-light:group-hover:cursor-light";
 
+type StatCounterProps = {
+  icon: LucideIcon;
+  label: string;
+  years: number;
+  months: number;
+  yearLabel: string;
+  monthLabel: string;
+  isInView: boolean;
+  delay?: number;
+};
+
+const StatCounter = ({
+  icon: Icon,
+  label,
+  years,
+  months,
+  yearLabel,
+  monthLabel,
+  isInView,
+  delay = 0,
+}: StatCounterProps) => {
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) {
+      setDisplay(0);
+      return;
+    }
+    const controls = animate(0, years, {
+      duration: 1.4,
+      delay,
+      ease: "easeOut",
+      onUpdate: (value) => setDisplay(Math.round(value)),
+    });
+    return () => controls.stop();
+  }, [isInView, years, delay]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, delay }}
+      className="glass-card p-5 md:p-6 flex flex-col items-center text-center gap-3"
+    >
+      <div className="w-11 h-11 rounded-full bg-foreground/5 border border-foreground/15 flex items-center justify-center">
+        <Icon size={20} className="text-foreground/80" />
+      </div>
+      <div>
+        <p className="font-code text-3xl md:text-4xl font-bold text-foreground leading-none">
+          {display}
+          <span className="text-base md:text-lg font-normal text-muted-foreground ml-1">
+            {yearLabel}
+          </span>
+        </p>
+        <p className="text-xs text-muted-foreground mt-1.5">
+          {months} {monthLabel}
+        </p>
+      </div>
+      <p className="font-code text-sm text-foreground">{label}</p>
+    </motion.div>
+  );
+};
+
 const WorkExperienceSection = () => {
   const { t } = useLanguage();
   const sectionRef = useRef(null);
@@ -23,6 +87,12 @@ const WorkExperienceSection = () => {
   const { totalYears, totalMonths } = t.work;
 
   const [selectedJob, setSelectedJob] = useState<JobEntry | null>(null);
+
+  const statCards = [
+    { icon: Bot, ...t.work.stats.rpa },
+    { icon: GraduationCap, ...t.work.stats.instructor },
+    { icon: Award, ...t.work.stats.total },
+  ];
 
   return (
     <section
@@ -130,6 +200,22 @@ const WorkExperienceSection = () => {
             {totalYears} {t.work.durationYearLabel} {totalMonths} {t.work.durationMonthLabel}
           </p>
         </motion.div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 md:mt-10">
+          {statCards.map((stat, index) => (
+            <StatCounter
+              key={stat.label}
+              icon={stat.icon}
+              label={stat.label}
+              years={stat.years}
+              months={stat.months}
+              yearLabel={t.work.durationYearLabel}
+              monthLabel={t.work.durationMonthLabel}
+              isInView={isInView}
+              delay={0.1 * index}
+            />
+          ))}
+        </div>
       </div>
 
       <Dialog open={!!selectedJob} onOpenChange={() => setSelectedJob(null)}>

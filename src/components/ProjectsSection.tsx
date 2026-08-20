@@ -82,22 +82,24 @@ const ProjectsSection = () => {
                   {project.description}
                 </p>
 
-                <div className="flex items-center gap-3">
-                  <a
-                    href={siteUrls.github}
-                    className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-card border border-border flex items-center justify-center"
-                    aria-label="GitHub"
-                  >
-                    <Github size={18} className="md:w-5 md:h-5" />
-                  </a>
-                  <a
-                    href={siteUrls.github}
-                    className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-foreground text-background flex items-center justify-center hover:bg-foreground/90 transition-colors cursor-dark theme-light:cursor-light"
-                    aria-label="GitHub"
-                  >
-                    <ArrowUpRight size={18} className="md:w-5 md:h-5" />
-                  </a>
-                </div>
+                {!project.hideLinks && (
+                  <div className="flex items-center gap-3">
+                    <a
+                      href={siteUrls.github}
+                      className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-card border border-border flex items-center justify-center"
+                      aria-label="GitHub"
+                    >
+                      <Github size={18} className="md:w-5 md:h-5" />
+                    </a>
+                    <a
+                      href={siteUrls.github}
+                      className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-foreground text-background flex items-center justify-center hover:bg-foreground/90 transition-colors cursor-dark theme-light:cursor-light"
+                      aria-label="GitHub"
+                    >
+                      <ArrowUpRight size={18} className="md:w-5 md:h-5" />
+                    </a>
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
