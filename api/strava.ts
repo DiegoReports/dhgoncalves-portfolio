@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { toPublicRoute, type NormalizedRoute } from "../lib/stravaRoute";
+import { toPublicRoute, type NormalizedRoute } from "../lib/stravaRoute.js";
 
 type StravaSummaryActivity = {
   id: number;
