@@ -5,7 +5,8 @@
  * server. The client receives only unit-box (0..1) shape data, which is enough
  * to draw the route but carries no geographic reference.
  *
- * Files prefixed with `_` are not exposed as HTTP routes by Vercel.
+ * Lives outside `api/` so Vercel treats it as shared code bundled into the
+ * function, never as an HTTP route of its own.
  */
 
 export type NormalizedRoute = {
