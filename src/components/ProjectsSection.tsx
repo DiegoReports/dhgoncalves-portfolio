@@ -68,6 +68,15 @@ const ProjectsSection = () => {
               </div>
 
               <div className={index % 2 === 1 ? "lg:order-1" : "lg:order-2"}>
+                {project.inProgress && (
+                  <div className="pill inline-flex items-center gap-2 mb-3 md:mb-4 py-1.5 px-3 text-xs md:text-sm text-muted-foreground">
+                    <span className="relative flex w-2 h-2">
+                      <span className="absolute inline-flex h-full w-full rounded-full bg-amber-400 theme-light:bg-amber-500 opacity-75 animate-ping" />
+                      <span className="relative inline-flex rounded-full w-2 h-2 bg-amber-400 theme-light:bg-amber-500" />
+                    </span>
+                    {t.projects.inProgressLabel}
+                  </div>
+                )}
                 <h3 className="font-code text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4">{project.title}</h3>
 
                 <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
@@ -85,14 +94,14 @@ const ProjectsSection = () => {
                 {!project.hideLinks && (
                   <div className="flex items-center gap-3">
                     <a
-                      href={siteUrls.github}
+                      href={project.githubUrl ?? siteUrls.github}
                       className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-card border border-border flex items-center justify-center"
                       aria-label="GitHub"
                     >
                       <Github size={18} className="md:w-5 md:h-5" />
                     </a>
                     <a
-                      href={siteUrls.github}
+                      href={project.githubUrl ?? siteUrls.github}
                       className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-foreground text-background flex items-center justify-center hover:bg-foreground/90 transition-colors cursor-dark theme-light:cursor-light"
                       aria-label="GitHub"
                     >

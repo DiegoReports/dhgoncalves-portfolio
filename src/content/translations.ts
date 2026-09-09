@@ -65,6 +65,7 @@ type Copy = {
   };
   projects: {
     kicker: string;
+    inProgressLabel: string;
     items: {
       title: string;
       description: string;
@@ -76,6 +77,8 @@ type Copy = {
       statValue: string;
       statSub: string;
       hideLinks?: boolean;
+      githubUrl?: string;
+      inProgress?: boolean;
     }[];
   };
   articles: {
@@ -267,6 +270,7 @@ export const translations: Record<Locale, Copy> = {
     },
     projects: {
       kicker: "... /Projects ...",
+      inProgressLabel: "In Progress",
       items: [
         {
           title: "Logistics Robot Suite",
@@ -317,6 +321,20 @@ export const translations: Record<Locale, Copy> = {
           statLabel: "Pages",
           statValue: "6",
           statSub: "Service categories",
+        },
+        {
+          title: "MoveMind",
+          description:
+            "Social fitness app that turns discipline into hype: follow friends training in real time, get encouragement mid-workout, and pick the visual style that fits you — from light and minimal to bold and energetic.",
+          techStack: ["React Native", "TypeScript", "Mobile UI", "Fitness Social"],
+          thumbLabel: "MoveMind app",
+          thumbEmoji: "🏃",
+          thumbImage: "/assets/MoveMind_cover.jpg",
+          statLabel: "Visual themes",
+          statValue: "2",
+          statSub: "Light & Bold",
+          githubUrl: "https://github.com/DiegoReports/MoveMind",
+          inProgress: true,
         },
       ],
     },
@@ -587,6 +605,7 @@ export const translations: Record<Locale, Copy> = {
     },
     projects: {
       kicker: "... /Projetos ...",
+      inProgressLabel: "Em andamento",
       items: [
         {
           title: "Suite de Robôs Logísticos",
@@ -637,6 +656,20 @@ export const translations: Record<Locale, Copy> = {
           statLabel: "Páginas",
           statValue: "6",
           statSub: "Categorias de serviço",
+        },
+        {
+          title: "MoveMind",
+          description:
+            "Um app de treino social que transforma disciplina em torcida: acompanhe amigos em tempo real, receba incentivos durante a atividade e escolha o visual que combina com seu estilo — de leve e minimalista a bruto e cheio de energia.",
+          techStack: ["React Native", "TypeScript", "UI Mobile", "Fitness Social"],
+          thumbLabel: "App MoveMind",
+          thumbEmoji: "🏃",
+          thumbImage: "/assets/MoveMind_cover.jpg",
+          statLabel: "Temas visuais",
+          statValue: "2",
+          statSub: "Leve & Bruto",
+          githubUrl: "https://github.com/DiegoReports/MoveMind",
+          inProgress: true,
         },
       ],
     },
